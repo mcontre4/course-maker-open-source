@@ -1,0 +1,15 @@
+FROM node:22-bookworm-slim
+RUN apt-get update && apt-get install -y --no-install-recommends chromium chromium-headless-shell ffmpeg fonts-liberation fonts-dejavu-core ca-certificates python3 \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /opt/animator
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY validate-project.mjs verify-remotion.mjs verify-toolkit.mjs ./
+COPY template ./template
+COPY tests/fixtures ./tests/fixtures
+ENV PATH="/opt/animator/node_modules/.bin:$PATH" \
+    NODE_PATH=/opt/animator/node_modules \
+    REMOTION_BROWSER_EXECUTABLE=/usr/bin/chromium-headless-shell \
+    HOME=/tmp/home DO_NOT_TRACK=1 CI=1
+WORKDIR /workspace
+ENTRYPOINT ["/bin/sh", "-c", "mkdir -p /tmp/home; exec \"$@\"", "--"]

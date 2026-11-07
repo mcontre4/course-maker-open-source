@@ -1,0 +1,36 @@
+{
+  "id": "institutional-change",
+  "title": "Brazil: show how power changes institutions",
+  "origin": {
+    "generation_source_sha256": "1e1ae93a3093bb84c3b04791ff5eb61adff269b396a3e1cf5dcdacbcc438a483",
+    "style_id": "flat-vector-science"
+  },
+  "narration_and_visual_sequence": [
+    {
+      "at_sec": 43,
+      "narration": "AI-5 expanded presidential powers.",
+      "focus": "decree and presidency",
+      "relationship": "The decree changes the authority available to the presidency.",
+      "action": "Move from the decree into a larger institutional view; activate one power relationship.",
+      "hold": "Keep the active institution dominant."
+    },
+    {
+      "at_sec": 52,
+      "narration": "Congress could be closed and rights restricted.",
+      "focus": "Congress and rights",
+      "relationship": "Show the institutional consequences separately.",
+      "action": "Close the Congress doors, then show the restriction on rights; retire each explanatory label after use.",
+      "hold": "Hold each consequence long enough to inspect."
+    },
+    {
+      "at_sec": 91,
+      "narration": "The return to civilian government was gradual.",
+      "focus": "institutional state across time",
+      "relationship": "Contrast the earlier concentration of power with the later civilian transition.",
+      "action": "Transform the established institutions across the timeline with a shared visual anchor.",
+      "hold": "Hold the final contrast without implying all repression legacies vanished."
+    }
+  ],
+  "improvement_target": "The source is a useful starting point, not the finish standard: institutional diagrams can remain unchanged while several claims are narrated. Enlarge one institution at a time, show doors closing and scrutiny changing through actual object states, strengthen human figures and material detail, and remove stale dates/arrows. Avoid reducing the lesson to badges, arrows and tiny icons.",
+  "adaptation": "Borrow explanatory structure and object continuity. Selected STYLE.md governs artwork. Do not copy topic facts, timing or imperfections."
+}

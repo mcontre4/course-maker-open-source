@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesson preview</title>
+    <style>
+      @font-face {
+        font-family: Nunito;
+        src: url("fonts/nunito-latin-900-normal.woff2");
+        font-weight: 900;
+        font-display: block;
+      }
+      @font-face {
+        font-family: Nunito;
+        src: url("fonts/nunito-latin-700-normal.woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: Fredoka;
+        src: url("fonts/fredoka-latin-600-normal.woff2");
+        font-weight: 600;
+        font-display: block;
+      }
+      @font-face {
+        font-family: Caveat;
+        src: url("fonts/caveat-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: Caveat;
+        src: url("fonts/caveat-latin-700-normal.woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("fonts/inter-latin-300-normal.woff2");
+        font-weight: 300;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("fonts/inter-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("fonts/inter-latin-500-normal.woff2");
+        font-weight: 500;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("fonts/inter-latin-600-normal.woff2");
+        font-weight: 600;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("fonts/inter-latin-800-normal.woff2");
+        font-weight: 800;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Space Grotesk";
+        src: url("fonts/space-grotesk-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Space Grotesk";
+        src: url("fonts/space-grotesk-latin-500-normal.woff2");
+        font-weight: 500;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Space Grotesk";
+        src: url("fonts/space-grotesk-latin-700-normal.woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Permanent Marker";
+        src: url("fonts/permanent-marker-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Kalam";
+        src: url("fonts/kalam-latin-700-normal.woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: Bangers;
+        src: url("fonts/bangers-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Archivo Black";
+        src: url("fonts/archivo-black-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Space Mono";
+        src: url("fonts/space-mono-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Space Mono";
+        src: url("fonts/space-mono-latin-700-normal.woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Bebas Neue";
+        src: url("fonts/bebas-neue-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Oswald";
+        src: url("fonts/oswald-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Oswald";
+        src: url("fonts/oswald-latin-700-normal.woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Fredoka";
+        src: url("fonts/fredoka-latin-700-normal.woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Rubik Mono One";
+        src: url("fonts/rubik-mono-one-latin-400-normal.woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Syne";
+        src: url("fonts/syne-latin-800-normal.woff2");
+        font-weight: 800;
+        font-display: block;
+      }
+      html,
+      body {
+        margin: 0;
+        background: #090b2c;
+        color: white;
+        font:
+          16px Nunito,
+          sans-serif;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+      }
+      canvas {
+        width: min(100vw, calc((100vh - 64px) * 16 / 9));
+        aspect-ratio: 16/9;
+      }
+      nav {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        padding: 12px;
+      }
+      button {
+        padding: 8px 16px;
+        border: 0;
+        border-radius: 20px;
+        background: #ffd23f;
+      }
+      input[type="range"] {
+        width: 35vw;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <canvas width="1280" height="720"></canvas>
+      <nav>
+        <button id="play">Play</button
+        ><input
+          id="scrub"
+          aria-label="Seek"
+          type="range"
+          min="0"
+          step="0.033333"
+        /><span id="clock"></span> <button id="sound">Sound on</button
+        ><label><input id="loop" type="checkbox" checked />Loop</label>
+      </nav>
+    </main>
+    <script src="style/harness.js"></script>
+    <script src="style/sound.js"></script>
+    <script src="style/drawing.js"></script>
+    <script src="animation.js"></script>
+    <script src="player.js"></script>
+  </body>
+</html>

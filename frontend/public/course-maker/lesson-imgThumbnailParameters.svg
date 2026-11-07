@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="30" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Thumbnail / parameters" clip-path="url(#clip0_0_117)">
+<path id="Vector" d="M44.4 0H3.6C1.61177 0 0 1.61177 0 3.6V26.4C0 28.3882 1.61177 30 3.6 30H44.4C46.3882 30 48 28.3882 48 26.4V3.6C48 1.61177 46.3882 0 44.4 0Z" fill="#F4ECC9"/>
+<path id="Vector_2" opacity="0.22" d="M24 27.3C30.7931 27.3 36.3 21.7931 36.3 15C36.3 8.2069 30.7931 2.7 24 2.7C17.2069 2.7 11.7 8.2069 11.7 15C11.7 21.7931 17.2069 27.3 24 27.3Z" fill="white"/>
+<path id="Vector_3" d="M29.1 9H19.8C18.3088 9 17.1 10.2088 17.1 11.7V19.8C17.1 21.2912 18.3088 22.5 19.8 22.5H29.1C30.5912 22.5 31.8 21.2912 31.8 19.8V11.7C31.8 10.2088 30.5912 9 29.1 9Z" fill="#FAF8F3" stroke-width="2" stroke="#292B28"/>
+<path id="Vector_4" d="M6.9 12.6H16.2M13.8 14.7L16.2 12.6L13.8 10.5M33.3 18.9H40.8M38.4 21L40.8 18.9L38.4 16.8" stroke-width="3" stroke-linecap="round" stroke="#292B28"/>
+<path id="Vector_5" d="M7.5 23.4C9.15685 23.4 10.5 22.0569 10.5 20.4C10.5 18.7431 9.15685 17.4 7.5 17.4C5.84315 17.4 4.5 18.7431 4.5 20.4C4.5 22.0569 5.84315 23.4 7.5 23.4Z" fill="#F2AE87"/>
+<g id="Vector_6">
+<path d="M21 12.9H27.9ZM21 15.9H25.8ZM21 18.9H27Z" fill="black"/>
+<path d="M21 12.9H27.9M21 15.9H25.8M21 18.9H27" stroke-width="2" stroke="#292B28"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_117">
+<rect width="48" height="30" fill="white"/>
+</clipPath>
+</defs>
+</svg>

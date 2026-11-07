@@ -1,0 +1,114 @@
+# tach.toml — heavy import-boundary enforcement for the hexagonal architecture.
+# Source: AGENTS.md — adapters -> application -> domain (inward only).
+# Cross-domain isolation: each domain depends only on shared + its own slices; no app.<other_domain> imports.
+#
+# Usage:
+#   poetry -C backend run tach check          # local / CI
+#   poetry -C backend run tach mod            # auto-discover new modules after adding a domain
+#   poetry -C backend run tach show           # graph
+#
+# When you add a new domain (e.g. app/orders), add its 4 modules below following
+# the same pattern as app.users.* and wire their depends_on. `tach mod` can do this
+# automatically if you prefer discovery.
+source_roots = ["src"]
+exact = false
+ignore_type_checking_imports = false
+exclude = ["tests/**/*", "**/__pycache__/**/*"]
+
+[[modules]]
+path = "app.shared.domain"
+depends_on = []
+
+[[modules]]
+path = "app.shared.application"
+depends_on = [{ path = "app.shared.domain" }]
+
+[[modules]]
+path = "app.shared.infrastructure"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }]
+
+# ── courses domain ────────────────────────────────────────────────────────
+[[modules]]
+path = "app.courses.domain"
+depends_on = [{ path = "app.shared.domain" }]
+
+[[modules]]
+path = "app.courses.ports"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.courses.domain" }]
+
+[[modules]]
+path = "app.courses.application"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.courses.domain" }, { path = "app.courses.ports" }]
+
+[[modules]]
+path = "app.courses.adapters"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.courses.domain" }, { path = "app.courses.ports" }, { path = "app.courses.application" }]
+
+[[modules]]
+path = "app.courses.composition"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.courses.domain" }, { path = "app.courses.ports" }, { path = "app.courses.application" }, { path = "app.courses.adapters" }]
+
+# ── users domain ────────────────────────────────────────────────────────
+[[modules]]
+path = "app.users.domain"
+depends_on = [{ path = "app.shared.domain" }]
+
+[[modules]]
+path = "app.users.ports"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.users.domain" }]
+
+[[modules]]
+path = "app.users.application"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.users.domain" }, { path = "app.users.ports" }]
+
+[[modules]]
+path = "app.users.adapters"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.users.domain" }, { path = "app.users.ports" }, { path = "app.users.application" }]
+
+# ── credits domain ────────────────────────────────────────────────────────
+[[modules]]
+path = "app.credits.domain"
+depends_on = [{ path = "app.shared.domain" }]
+
+[[modules]]
+path = "app.credits.ports"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.credits.domain" }]
+
+[[modules]]
+path = "app.credits.application"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.credits.domain" }, { path = "app.credits.ports" }]
+
+[[modules]]
+path = "app.credits.adapters"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.credits.domain" }, { path = "app.credits.ports" }, { path = "app.credits.application" }]
+
+[[modules]]
+path = "app.credits.composition"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.credits.domain" }, { path = "app.credits.ports" }, { path = "app.credits.application" }, { path = "app.credits.adapters" }]
+
+# ── composition roots — allowed to wire everything (must stay at top) ──
+[[modules]]
+path = "app.users.composition"
+depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.users.domain" }, { path = "app.users.ports" }, { path = "app.users.application" }, { path = "app.users.adapters" }]
+
+[[modules]]
+path = "app.main"
+depends_on = [{ path = "app.credits.adapters" }, { path = "app.credits.ports" }, { path = "app.credits.composition" }, { path = "app.courses.ports" }, { path = "app.courses.domain" }, { path = "app.courses.application" }, { path = "app.courses.adapters" }, { path = "app.courses.composition" }, { path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.users.domain" }, { path = "app.users.ports" }, { path = "app.users.application" }, { path = "app.users.adapters" }, { path = "app.users.composition" }]
+
+# ── future domains: copy the users block ─────────────────────────────────
+# [[modules]]
+# path = "app.orders.domain"
+# depends_on = [{ path = "app.shared.domain" }]
+# [[modules]]
+# path = "app.orders.ports"
+# depends_on = [{ path = "app.shared.domain" }, { path = "app.orders.domain" }]
+# [[modules]]
+# path = "app.orders.application"
+# depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.orders.domain" }, { path = "app.orders.ports" }]
+# [[modules]]
+# path = "app.orders.adapters"
+# depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.orders.domain" }, { path = "app.orders.ports" }, { path = "app.orders.application" }]
+# [[modules]]
+# path = "app.orders.composition"
+# depends_on = [{ path = "app.shared.domain" }, { path = "app.shared.application" }, { path = "app.shared.infrastructure" }, { path = "app.orders.domain" }, { path = "app.orders.ports" }, { path = "app.orders.application" }, { path = "app.orders.adapters" }]
+# Then add the new adapters to app.main.depends_on as well.

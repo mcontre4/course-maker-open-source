@@ -1,0 +1,1174 @@
+/*
+ * Lesson interactives: the creator's studio and the learner's path through a lesson.
+ * The running page sits on a dark well so it reads as a live object, not page content.
+ */
+.lesson-media-workspace[hidden],
+.interactive-side-pane[hidden] {
+  display: none;
+}
+
+/* A sixth tab has to fit in the narrow editor column, and scroll on the smallest phones. */
+.lesson-editor-tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.lesson-editor-tabs > button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.lesson-editor-inspector .lesson-editor-tabs > button {
+  padding-inline: 12px;
+}
+/* These strips scroll, which would clip the usual ring drawn outside the control. */
+.lesson-editor-tabs > button:focus-visible,
+.lesson-path button:focus-visible,
+.lesson-path a:focus-visible {
+  outline-offset: -3px;
+}
+
+/* ---------- Path through a lesson: numbered because it is taken in order ---------- */
+.lesson-path {
+  scroll-margin-top: calc(var(--cm-header-height) + 12px);
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.lesson-path::-webkit-scrollbar {
+  display: none;
+}
+.lesson-path ol {
+  display: flex;
+  gap: 0;
+  width: fit-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+}
+.lesson-path li {
+  position: relative;
+  flex: 0 0 auto;
+  padding-right: 34px;
+}
+.lesson-path li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  width: 24px;
+  height: 2px;
+  background: var(--cm-line-strong);
+}
+.lesson-path li:last-child {
+  padding-right: 0;
+}
+.lesson-path li:last-child::after {
+  display: none;
+}
+.lesson-path button,
+.lesson-path a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 60px;
+  padding: 9px 18px 9px 10px;
+  border: 1px solid var(--cm-line);
+  border-radius: 16px;
+  background: var(--cm-surface);
+  color: var(--cm-ink);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.lesson-path button:hover,
+.lesson-path a:hover {
+  border-color: var(--cm-line-strong);
+}
+.lesson-path b {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--cm-track);
+  color: var(--cm-muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+.lesson-path span {
+  display: flex;
+  flex-direction: column;
+}
+.lesson-path strong {
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+.lesson-path small {
+  color: var(--cm-muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.lesson-path [aria-current="step"] {
+  border-color: var(--cm-ink);
+  background: var(--cm-ink);
+  color: #fff;
+}
+.lesson-path [aria-current="step"] b {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+.lesson-path [aria-current="step"] small {
+  color: rgba(255, 255, 255, 0.72);
+}
+.lesson-path-add a {
+  border-style: dashed;
+  border-color: var(--cm-line-strong);
+  background: transparent;
+}
+.lesson-path-add a:hover {
+  border-color: var(--cm-violet);
+  background: var(--cm-lavender);
+}
+.lesson-path-add b {
+  background: var(--cm-lavender);
+  color: var(--cm-violet);
+  font-size: 18px;
+}
+.lesson-path-next {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+.lesson-workflow > .lesson-path {
+  margin-bottom: 18px;
+}
+.lesson-workflow > .lesson-path-next {
+  margin-top: 18px;
+}
+
+/* ---------- The running page ---------- */
+.interactive-stage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--cm-radius);
+  background: #2e302c;
+}
+.interactive-stage-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+}
+.interactive-stage-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+.interactive-stage-actions button {
+  min-height: 36px;
+  padding: 6px 13px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #ece9e1;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
+.interactive-stage-actions button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.interactive-stage :focus-visible {
+  outline-color: #cdbdea;
+  outline-offset: 2px;
+}
+.interactive-stage-note {
+  padding: 0 14px 10px;
+  color: #ece9e1;
+  font-size: 13px;
+}
+.interactive-stage-well {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px 10px;
+}
+.interactive-stage-frame {
+  display: block;
+  width: 100%;
+  height: clamp(460px, 68vh, 680px);
+  border: 0;
+  border-radius: 12px;
+  background: #fdfcf9;
+  transition: width 0.25s ease;
+}
+.interactive-stage-well[data-width="phone"] .interactive-stage-frame {
+  width: min(390px, 100%);
+}
+.interactive-stage[data-expanded="true"] {
+  height: 100%;
+  border-radius: 0;
+}
+.interactive-stage[data-expanded="true"] .interactive-stage-well {
+  flex: 1;
+  min-height: 0;
+}
+.interactive-stage[data-expanded="true"] .interactive-stage-frame {
+  height: 100%;
+}
+.interactive-stage-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #ece9e1;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.interactive-stage-pill .loading-spinner {
+  width: 14px;
+  height: 14px;
+}
+.interactive-width.lesson-editor-tabs {
+  margin: 0;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.interactive-width.lesson-editor-tabs button {
+  min-height: 30px;
+  padding: 4px 14px;
+  color: #d8d5cc;
+  font-size: 12.5px;
+}
+.interactive-width.lesson-editor-tabs button:hover:not(:disabled) {
+  color: #fff;
+}
+.interactive-width.lesson-editor-tabs button[aria-pressed="true"],
+.interactive-width.lesson-editor-tabs
+  button[aria-pressed="true"]:hover:not(:disabled) {
+  color: var(--cm-ink);
+}
+
+/* ---------- Learner view of one interactive ---------- */
+.learner-interactive {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.learner-interactive-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.learner-interactive-heading p {
+  max-width: 68ch;
+  margin-top: 4px;
+}
+.learner-interactive-heading .btn {
+  flex-shrink: 0;
+}
+.learner-interactive-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.learner-interactive-body[data-has-prompts="true"] {
+  grid-template-columns: minmax(0, 1fr) 290px;
+}
+.learner-try {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--cm-line);
+  border-radius: var(--cm-radius);
+  background: var(--cm-surface);
+}
+.learner-try h3 {
+  font-size: 15.5px;
+}
+.learner-try ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.learner-try label {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  margin: 0 -8px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.learner-try label:hover {
+  background: var(--cm-field);
+}
+.learner-try input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--cm-green);
+}
+.learner-try label[data-checked="true"] span {
+  color: var(--cm-muted);
+}
+
+/* ---------- Studio ---------- */
+.interactive-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.interactive-studio-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+.interactive-studio-heading .workflow-inline-actions {
+  margin-left: auto;
+}
+.interactive-studio-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 20px;
+  align-items: start;
+}
+.interactive-studio-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.interactive-live-note {
+  color: var(--cm-muted);
+  font-size: 13.5px;
+}
+.interactive-studio-side {
+  position: sticky;
+  top: calc(var(--cm-header-height) + 16px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  max-height: calc(100vh - var(--cm-header-height) - 32px);
+  padding: 16px;
+  border: 1px solid var(--cm-line);
+  border-radius: var(--cm-radius);
+  background: var(--cm-surface);
+}
+.interactive-side-tabs.lesson-editor-tabs {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  margin: 0;
+}
+.interactive-side-tabs.lesson-editor-tabs button {
+  flex: 1;
+  padding: 6px 8px;
+}
+.interactive-side-pane {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  /* Room for focus rings on fields that sit against the scrolling edge. */
+  margin: -4px;
+  padding: 4px;
+  overflow: auto;
+}
+.interactive-composer {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 10px;
+}
+.interactive-composer label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.interactive-composer textarea,
+.interactive-details input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--cm-line-strong);
+  border-radius: 12px;
+  background: var(--cm-surface);
+  color: var(--cm-ink);
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.interactive-composer textarea {
+  resize: vertical;
+}
+.interactive-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.interactive-chips button {
+  padding: 6px 11px;
+  border: 1px solid var(--cm-line);
+  border-radius: 999px;
+  background: var(--cm-field);
+  color: var(--cm-ink);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+}
+.interactive-chips button:hover:not(:disabled) {
+  border-color: var(--cm-violet);
+  background: var(--cm-lavender);
+}
+.interactive-history {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 90px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+.interactive-history > li {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.interactive-request {
+  align-self: flex-end;
+  max-width: 92%;
+  padding: 9px 13px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--cm-lavender);
+  font-size: 13.5px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.interactive-version {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  color: var(--cm-muted);
+  font-size: 12.5px;
+}
+.interactive-version strong {
+  color: var(--cm-ink);
+  font-size: 13px;
+  font-weight: 750;
+}
+.interactive-version[data-failed="true"] strong {
+  color: var(--cm-attention);
+  font-weight: 600;
+}
+.interactive-version button,
+.interactive-delete-open {
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--cm-violet);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.interactive-version .loading-spinner {
+  width: 14px;
+  height: 14px;
+}
+.interactive-history-end {
+  height: 0;
+}
+.interactive-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.interactive-details .quiz-option-row {
+  align-items: flex-start;
+}
+.interactive-details .quiz-option-row textarea {
+  flex: 1;
+  min-width: 0;
+}
+.interactive-details-save {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.interactive-delete {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--cm-line);
+}
+.interactive-delete-open {
+  align-self: flex-start;
+  color: var(--cm-attention);
+}
+
+/* ---------- Stage before there is anything to run ---------- */
+.interactive-blank,
+.interactive-building {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-height: clamp(420px, 64vh, 620px);
+  padding: 40px clamp(24px, 6vw, 72px);
+  border: 1px dashed var(--cm-line-strong);
+  border-radius: var(--cm-radius);
+  background: var(--cm-field);
+}
+.interactive-blank > p {
+  max-width: 58ch;
+}
+.interactive-blank-ideas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 640px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.interactive-blank-ideas button,
+.interactive-ideas button {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--cm-line);
+  border-radius: 12px;
+  background: var(--cm-surface);
+  color: var(--cm-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+}
+.interactive-blank-ideas button:hover,
+.interactive-ideas button:hover {
+  border-color: var(--cm-violet);
+  background: var(--cm-lavender);
+}
+.interactive-failed {
+  border-color: #e4bfa9;
+  background: #fff7f1;
+}
+.interactive-building {
+  border-style: solid;
+  border-color: transparent;
+  background: var(--cm-lavender);
+}
+.interactive-building ol {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 4px 0 6px;
+  padding: 0;
+  list-style: none;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.interactive-building li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.interactive-building li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cfc5e3;
+}
+.interactive-building li[data-state="done"]::before {
+  background: var(--cm-green);
+}
+.interactive-building li[data-state="current"]::before {
+  background: var(--cm-violet);
+  animation: status-pulse 1.6s ease-in-out infinite;
+}
+.interactive-building li[data-state="upcoming"] {
+  color: #7f7790;
+}
+/* Three controls finding their settings: the one moment of motion on this page. */
+.interactive-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(240px, 100%);
+  margin-bottom: 14px;
+}
+.interactive-sliders span {
+  position: relative;
+  display: block;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(111, 90, 150, 0.25);
+}
+.interactive-sliders span::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cm-violet);
+  animation: interactive-slide 3.2s ease-in-out infinite alternate;
+}
+.interactive-sliders span:nth-child(2)::after {
+  animation-duration: 2.4s;
+  animation-delay: -1.2s;
+}
+.interactive-sliders span:nth-child(3)::after {
+  animation-duration: 4s;
+  animation-delay: -2.6s;
+}
+@keyframes interactive-slide {
+  from {
+    left: 4%;
+  }
+  to {
+    left: 84%;
+  }
+}
+
+/* ---------- List in the lesson studio ---------- */
+.interactive-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.interactive-panel .workflow-section-heading {
+  margin-bottom: 0;
+}
+.interactive-panel-empty {
+  align-items: flex-start;
+}
+.interactive-panel-empty > p {
+  max-width: 56ch;
+}
+.interactive-ideas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 6px;
+}
+.interactive-ideas ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.interactive-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.interactive-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 10px;
+  border: 1px solid var(--cm-line);
+  border-radius: 16px;
+  background: var(--cm-field);
+}
+.interactive-card:hover {
+  border-color: var(--cm-line-strong);
+}
+.interactive-card-open {
+  display: flex;
+  flex: 1 1 280px;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+.interactive-thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 128px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--cm-track);
+}
+/* A live miniature: the page laid out at desktop size, then scaled to fit. */
+.interactive-thumb-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 500px;
+  border: 0;
+  background: #fdfcf9;
+  pointer-events: none;
+  transform: scale(0.16);
+  transform-origin: 0 0;
+}
+.interactive-thumb-empty {
+  position: absolute;
+  inset: 0;
+  background: var(--cm-lavender);
+}
+.interactive-thumb-empty[data-failed="true"] {
+  background: var(--cm-apricot);
+}
+.interactive-card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.interactive-card-copy strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 14.5px;
+  font-weight: 750;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.interactive-card-open:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.interactive-card-copy small {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--cm-muted);
+  font-size: 12.5px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.interactive-card-side {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+.interactive-card-side .quiz-card-tools {
+  margin-left: 0;
+}
+.interactive-card-side .workflow-status {
+  padding: 5px 10px 5px 9px;
+  font-size: 11.5px;
+}
+
+/* ---------- Progress screens ---------- */
+.interactive-wait {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--cm-line);
+  border-radius: var(--cm-radius);
+  background: var(--cm-surface);
+}
+.interactive-wait > div {
+  flex: 1 1 280px;
+}
+.interactive-wait h2 {
+  font-size: 16px;
+}
+.interactive-wait-list {
+  display: flex;
+  flex: 1 0 100%;
+  flex-direction: column;
+  order: 3;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.interactive-wait-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.interactive-wait-list .workflow-status {
+  padding: 4px 10px 4px 9px;
+  font-size: 11.5px;
+}
+
+/* ---------- Lesson details form ---------- */
+.interactive-ideas-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.interactive-ideas-field ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.interactive-ideas-field li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 6px 6px 14px;
+  border-radius: 12px;
+  background: var(--cm-lavender);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 1150px) {
+  .interactive-studio-grid,
+  .learner-interactive-body[data-has-prompts="true"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .interactive-studio-side {
+    position: static;
+    max-height: none;
+  }
+  .interactive-side-pane {
+    overflow: visible;
+  }
+}
+@media (max-width: 680px) {
+  /* Already on a phone, so there is nothing to compare against. */
+  .interactive-width {
+    display: none;
+  }
+  .interactive-stage-frame {
+    height: 620px;
+  }
+  .interactive-studio-heading .workflow-inline-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+  .learner-interactive-heading {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .interactive-wait {
+    padding: 18px;
+  }
+  .interactive-thumb {
+    width: 96px;
+    height: 60px;
+  }
+  .interactive-thumb-frame {
+    transform: scale(0.12);
+  }
+  .interactive-card-side {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .interactive-sliders span::after {
+    animation: none;
+    left: 40%;
+  }
+  .interactive-building li[data-state="current"]::before {
+    animation: none;
+  }
+  .interactive-stage-frame {
+    transition: none;
+  }
+}
+/* ---------- Watching a lesson ---------- */
+/* Wider screens lay these parts straight into the page, as they always have. */
+.watch-page,
+.watch-meta {
+  display: contents;
+}
+@media (max-width: 760px) {
+  /* The video comes first and uses the full width; everything else supports it. */
+  .watch-page {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+  }
+  .watch-page[data-part="video"] .watch-video {
+    order: -1;
+  }
+  .watch-video {
+    margin: -20px calc(var(--cm-gutter) * -1) 0;
+  }
+  .public-video {
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-radius: 0;
+  }
+  .watch-page[data-in-course="false"] .page-heading .eyebrow {
+    display: none;
+  }
+  .watch-page .page-heading {
+    gap: 4px;
+  }
+  .watch-page .page-heading h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  .watch-page .page-heading > p.muted {
+    font-size: 14px;
+  }
+  .watch-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .watch-meta:empty {
+    display: none;
+  }
+  .watch-meta .creator-link {
+    min-width: 0;
+    min-height: 44px;
+    margin: 0;
+  }
+  .watch-meta .workflow-inline-actions {
+    flex: none;
+    margin: 0 0 0 auto;
+  }
+  .watch-meta .btn {
+    min-height: 44px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  /* The quiz's questions are already cards; a second inset only narrows them. */
+  .watch-page .quiz-panel {
+    margin-top: 4px;
+    padding: 0;
+  }
+  .watch-page .learner-quiz {
+    margin-top: 12px;
+  }
+  /* Steps stay numbered, without the connectors they can't afford. */
+  .lesson-path {
+    margin-inline: calc(var(--cm-gutter) * -1);
+    padding-inline: 12px;
+    scroll-margin-top: 8px;
+  }
+  .lesson-path li {
+    padding-right: 8px;
+  }
+  .lesson-path li::after,
+  .lesson-path small {
+    display: none;
+  }
+  .lesson-path button,
+  .lesson-path a {
+    gap: 8px;
+    min-height: 48px;
+    padding: 6px 14px 6px 8px;
+    border-radius: 14px;
+  }
+  .lesson-path b {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+  }
+  .lesson-path-next {
+    margin-top: 0;
+  }
+  .lesson-path-next .btn {
+    width: 100%;
+  }
+  /* The numbered steps are right above the video, saying the same thing. */
+  .watch-page[data-part="video"] .lesson-path-next {
+    display: none;
+  }
+
+  .lesson-workflow .back-link {
+    margin-bottom: 4px;
+  }
+  .lesson-workflow .lesson-workspace-heading .workflow-inline-actions {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+  .lesson-workflow
+    .lesson-workspace-heading
+    .workflow-inline-actions
+    .workflow-inline-actions {
+    width: auto;
+  }
+  .lesson-workspace-heading .btn {
+    min-height: 44px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .creator-link {
+    min-height: 44px;
+  }
+  /* An owner's finished lesson: straight to the video, with the actions right below. */
+  .lesson-workflow[data-view="watch"] .lesson-steps {
+    display: none;
+  }
+  .lesson-workflow > .lesson-path {
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+  .lesson-workflow[data-view="watch"] > .lesson-media-workspace:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+  }
+  .lesson-workflow[data-view="watch"]
+    > .lesson-media-workspace
+    > .workflow-section-heading {
+    order: 1;
+    margin: 12px 0 0;
+  }
+  .lesson-workflow[data-view="watch"]
+    > .lesson-media-workspace
+    > .workflow-section-heading
+    > p {
+    display: none;
+  }
+  .lesson-workflow[data-view="watch"]
+    .workflow-section-heading
+    .workflow-inline-actions {
+    width: 100%;
+    margin: 0;
+  }
+  .lesson-workflow[data-view="watch"] .workflow-section-heading .btn {
+    flex: 1;
+    min-height: 44px;
+  }
+  .lesson-editor-tabs > button {
+    min-height: 44px;
+  }
+  .workflow-actionbar {
+    position: var(--cm-floating-position, sticky);
+    bottom: calc(var(--cm-tabbar-space) + 8px);
+    gap: 8px;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 16px;
+  }
+  .workflow-actionbar > div:first-child,
+  .workflow-actionbar > .workflow-guidance:first-child {
+    flex-basis: 100%;
+  }
+  .workflow-guidance {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  .workflow-actionbar .workflow-inline-actions,
+  .workflow-actionbar > .btn {
+    flex: 1;
+    margin: 0;
+  }
+  .workflow-actionbar .workflow-inline-actions .btn {
+    flex: 1;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .quiz-savebar {
+    position: var(--cm-floating-position, sticky);
+    bottom: calc(var(--cm-tabbar-space) + 8px);
+  }
+  /* The send button sat on top of the text; on a phone it gets its own row. */
+  .persistent-guide .lesson-chat-compose textarea {
+    min-height: 68px;
+    padding: 13px;
+  }
+  .persistent-guide .lesson-chat-compose > p {
+    font-size: 12px;
+  }
+  /* The stacked composer takes more room, so the conversation still needs its share. */
+  .persistent-guide {
+    height: min(88svh, 760px);
+    max-height: none;
+  }
+  .persistent-guide .guide-send {
+    position: static;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+  .guide-settings > summary {
+    min-height: 44px;
+    padding-block: 14px;
+  }
+  .persistent-guide .btn:not(.guide-send) {
+    min-height: 44px;
+  }
+  .persistent-guide details > summary {
+    min-height: 44px;
+    padding-block: 10px;
+  }
+  .duration-presets button,
+  .quiz-add-answer,
+  .quiz-add-question {
+    min-height: 44px;
+  }
+}
+/* Sideways on a phone: the video still comes first, under the one-row header. */
+@media (min-width: 761px) and (max-height: 500px) and (orientation: landscape) {
+  .watch-page {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+  }
+  .watch-page[data-part="video"] .watch-video {
+    order: -1;
+  }
+}

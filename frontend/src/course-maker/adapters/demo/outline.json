@@ -1,0 +1,186 @@
+[
+  {
+    "title": "Get comfortable with Python",
+    "summary": "Build a foundation: store values, work with text, and control what your program does.",
+    "lessons": [
+      {
+        "title": "Values and variables",
+        "topics": [
+          "Run your first Python program",
+          "Store numbers and text in named variables",
+          "Understand strings, integers, and floats",
+          "Use print() to see your results"
+        ],
+        "quizSummary": "Identify a value’s type and choose a valid variable name."
+      },
+      {
+        "title": "Working with strings",
+        "topics": [
+          "Create and join pieces of text",
+          "Insert variables with f-strings",
+          "Clean text with strip() and lower()",
+          "Read a response with input()"
+        ],
+        "quizSummary": "Choose the expression that formats and cleans a message."
+      },
+      {
+        "title": "Making decisions",
+        "topics": [
+          "Compare values with ==, >, and <",
+          "Write if, elif, and else branches",
+          "Combine conditions with and / or",
+          "Build a simple decision-based program"
+        ],
+        "quizSummary": "Predict which branch runs for a given input."
+      },
+      {
+        "title": "Repeating with loops",
+        "topics": [
+          "Repeat an action with a for loop",
+          "Generate number sequences with range()",
+          "Use a while loop for repeated input",
+          "Recognize when a loop should stop"
+        ],
+        "quizSummary": "Trace a loop and predict its output."
+      }
+    ]
+  },
+  {
+    "title": "Work with real-world data",
+    "summary": "Collect information and read or save it in files.",
+    "lessons": [
+      {
+        "title": "A place for everything: lists",
+        "topics": [
+          "Create a list of related values",
+          "Find an item by its index",
+          "Add or remove items with append() and remove()",
+          "Loop over a list to process every item"
+        ],
+        "quizSummary": "Choose how to add, access, and remove list items."
+      },
+      {
+        "title": "Dictionaries",
+        "topics": [
+          "Represent information with key–value pairs",
+          "Read a value using its key",
+          "Add and update dictionary entries",
+          "Combine a dictionary with a list"
+        ],
+        "quizSummary": "Match keys to values and update an entry."
+      },
+      {
+        "title": "Reading files",
+        "topics": [
+          "Open a text file with a with block",
+          "Read a whole file or one line at a time",
+          "Clean each line before using it",
+          "Handle a missing file gracefully"
+        ],
+        "quizSummary": "Choose a safe way to read and close a file."
+      },
+      {
+        "title": "Writing files",
+        "topics": [
+          "Create a text file with write mode",
+          "Add to a file with append mode",
+          "Write text and newline characters",
+          "Save a small set of records"
+        ],
+        "quizSummary": "Explain when to use write versus append."
+      }
+    ]
+  },
+  {
+    "title": "Make your code reusable",
+    "summary": "Organize your logic, handle mistakes, and reuse useful tools.",
+    "lessons": [
+      {
+        "title": "Functions",
+        "topics": [
+          "Define a function with def",
+          "Call a function from your program",
+          "Return a result to the caller",
+          "Split a repeated task into a named function"
+        ],
+        "quizSummary": "Distinguish returning a value from printing it."
+      },
+      {
+        "title": "Parameters",
+        "topics": [
+          "Pass data into a function",
+          "Use more than one parameter",
+          "Set a sensible default value",
+          "Keep local variables inside a function"
+        ],
+        "quizSummary": "Choose arguments that match a function’s parameters."
+      },
+      {
+        "title": "Handling errors",
+        "topics": [
+          "Read a Python error message",
+          "Catch an expected error with try / except",
+          "Validate a user’s input",
+          "Show a useful recovery message"
+        ],
+        "quizSummary": "Choose the error handling for invalid input."
+      },
+      {
+        "title": "Useful modules",
+        "topics": [
+          "Import a standard library module",
+          "Use pathlib to describe file paths",
+          "Explore files and folders safely",
+          "Read a function’s documentation"
+        ],
+        "quizSummary": "Pick the module and function for a file task."
+      }
+    ]
+  },
+  {
+    "title": "Build something useful",
+    "summary": "Bring the pieces together in a small file organizer project.",
+    "lessons": [
+      {
+        "title": "Plan your file organizer",
+        "topics": [
+          "Define what the organizer should do",
+          "Choose a small set of file categories",
+          "Break the task into functions",
+          "Plan a safe folder for experimenting"
+        ],
+        "quizSummary": "Put the project steps into a useful order."
+      },
+      {
+        "title": "Build the first version",
+        "topics": [
+          "List the files in a sample folder",
+          "Read and categorize file extensions",
+          "Create destination folders",
+          "Move sample files into their categories"
+        ],
+        "quizSummary": "Choose the correct rule for categorizing a file."
+      },
+      {
+        "title": "Test and improve",
+        "topics": [
+          "Try an empty folder and unknown file types",
+          "Handle an existing destination filename",
+          "Use a dry run before moving files",
+          "Make errors understandable"
+        ],
+        "quizSummary": "Identify a missing test or an unsafe behavior."
+      },
+      {
+        "title": "Make it yours",
+        "topics": [
+          "Add a category that matters to you",
+          "Let the user choose a source folder",
+          "Document how to run your organizer",
+          "Review the skills you can use next"
+        ],
+        "quizSummary": "Apply variables, functions, and files in a final recap."
+      }
+    ]
+  }
+]

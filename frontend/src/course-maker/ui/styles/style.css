@@ -1,0 +1,283 @@
+.style-fields {
+  border: 0;
+  padding: 0;
+  margin: 1.5rem 0;
+  min-width: 0;
+}
+.style-fields legend {
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.style-fields details {
+  margin-top: 1rem;
+}
+.style-fields label {
+  display: block;
+  margin: 1rem 0 0.4rem;
+  font-weight: 600;
+}
+.style-fields summary,
+.style-panel details:not(.settings-disclosure) > summary {
+  cursor: pointer;
+  padding: 0.45rem 0;
+}
+.style-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+.style-presets button {
+  border: 1px solid #d7d6d1;
+  background: transparent;
+  color: inherit;
+  border-radius: 2rem;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+}
+.style-presets button[aria-pressed="true"] {
+  background: #e3eddc;
+  border-color: #657b57;
+}
+.style-presets button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+.style-panel {
+  border-block: 1px solid var(--cm-line);
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+}
+.style-panel + .style-panel {
+  border-top: 0;
+}
+.style-panel.advanced-settings {
+  margin: 0;
+  padding: 0;
+}
+.style-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.style-heading p {
+  margin: 0.3rem 0;
+}
+.style-directions {
+  display: grid;
+  gap: 0.65rem;
+}
+.style-directions dt {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.style-directions dd {
+  margin: 0.2rem 0 0;
+}
+.style-panel form > button {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+.voice-preview {
+  margin-top: 0.65rem;
+}
+.voice-preview audio {
+  max-width: 100%;
+  height: 40px;
+}
+@media (max-width: 600px) {
+  .style-heading {
+    flex-direction: column;
+  }
+}
+
+.visual-style-picker {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin: 10px 0 4px;
+}
+.visual-style-picker legend {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.visual-style-picker > p {
+  margin: 0 0 0.75rem;
+}
+.visual-style-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 176px), 1fr));
+  gap: 14px;
+  padding: 2px;
+}
+.style-panel .visual-style-gallery,
+.lesson-editor-inspector .visual-style-gallery {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+  gap: 12px;
+}
+.visual-style-option,
+.style-fields label.visual-style-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 8px 12px;
+  border: 1px solid var(--cm-line);
+  border-radius: 16px;
+  background: var(--cm-surface);
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+.visual-style-option:hover {
+  border-color: var(--cm-line-strong);
+  transform: translateY(-2px);
+}
+.visual-style-option:has(input:checked) {
+  border-color: var(--cm-ink);
+  box-shadow: 0 0 0 1px var(--cm-ink);
+}
+.visual-style-option:has(input:focus-visible) {
+  outline: 3px solid var(--cm-violet);
+  outline-offset: 2px;
+}
+.visual-style-option:has(input:disabled) {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+/* The radio becomes a check badge over the thumbnail. */
+.visual-style-option input {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: rgba(41, 43, 40, 0.35);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  appearance: none;
+  cursor: pointer;
+}
+.visual-style-option input:checked {
+  background: var(--cm-ink)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 14px no-repeat;
+}
+.visual-style-thumbnail {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  background: #21194c;
+}
+.visual-style-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Show one representative frame from the four-frame style contact sheet. */
+.visual-style-thumbnail .style-contact-sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  max-width: none;
+  height: 200%;
+}
+.visual-style-name {
+  padding: 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.visual-style-description {
+  padding: 0 4px;
+  color: var(--cm-muted);
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+@media (max-width: 680px) {
+  .visual-style-gallery,
+  .style-panel .visual-style-gallery,
+  .lesson-editor-inspector .visual-style-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .visual-style-option {
+    transition: none;
+  }
+  .visual-style-option:hover {
+    transform: none;
+  }
+}
+.review-output-choice,
+.style-fields label.review-output-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.review-output-choice input {
+  margin: 0;
+}
+.advanced-settings {
+  margin: 12px 0 0;
+  border-top: 1px solid var(--cm-line);
+}
+.advanced-settings[open] {
+  padding-bottom: 12px;
+}
+.advanced-settings-section {
+  margin-top: 1.5rem;
+}
+.advanced-settings-section + .advanced-settings-section {
+  border-top: 1px solid var(--cm-line);
+  padding-top: 1rem;
+}
+.advanced-settings-section h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+.style-panel.style-focus {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.style-focus .workflow-section-heading {
+  margin-bottom: 18px;
+}
+.style-focus .style-fields {
+  margin-top: 0.5rem;
+}
+.style-focus .style-fields > .advanced-settings-section:first-of-type {
+  margin-top: 0;
+}
+.style-focus form > .muted.small {
+  margin: 20px 0 14px;
+}
+.style-focus > details {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cm-line);
+  font-size: 14px;
+}
+.style-saved {
+  color: var(--cm-green);
+  font-size: 13px;
+  font-weight: 600;
+}

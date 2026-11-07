@@ -1,0 +1,61 @@
+{
+  "registry": "https://remotionui.com",
+  "cli_version": "0.9.1",
+  "local_change": "Alias imports converted to relative paths; PathDraw filters and ConnectorLines masks use per-instance React useId to avoid SVG id collisions.",
+  "files": [
+    {
+      "component": "arrow-annotate",
+      "registry_source": "registry/bases/default/primitives/arrow-annotate.tsx",
+      "target": "src/remotion/primitives/arrow-annotate.tsx",
+      "sha256": "355430c90625bfe29e652cedd14ce007211041e4e1ecbf1e63010ddf5ba08cef"
+    },
+    {
+      "component": "path-draw",
+      "registry_source": "registry/bases/default/primitives/path-draw.tsx",
+      "target": "src/remotion/primitives/path-draw.tsx",
+      "sha256": "1c74b565ede54fe84bc909f7be2f44f489487d447abd16c66778df0bdc394ef1"
+    },
+    {
+      "component": "shape-morph",
+      "registry_source": "registry/bases/default/primitives/shape-morph.tsx",
+      "target": "src/remotion/primitives/shape-morph.tsx",
+      "sha256": "181e2db7205ae6625962e9012225d65c955c226de168fbf342229fba7e466fc0"
+    },
+    {
+      "component": "connector-lines",
+      "registry_source": "registry/bases/default/primitives/connector-lines.tsx",
+      "target": "src/remotion/primitives/connector-lines.tsx",
+      "sha256": "0b6dce30a9f236ee87680fa4257804ef1a8e0ac02dc01b94c6f143d3385709ec"
+    },
+    {
+      "component": "motion-tokens",
+      "registry_source": "registry/bases/default/lib/motion-tokens.ts",
+      "target": "src/remotion/lib/motion-tokens.ts",
+      "sha256": "3d7f6f57a50006183aebdb62b923f5e4411a2327a60dcc653eb6c0f1047cb6af"
+    },
+    {
+      "component": "path-utils",
+      "registry_source": "registry/bases/default/lib/path-utils.ts",
+      "target": "src/remotion/lib/path-utils.ts",
+      "sha256": "1b55a04cca8244d7307b4afba73f5da923ecd5bfa23bf90eed9ea141a569d773"
+    },
+    {
+      "component": "path-morph",
+      "registry_source": "registry/bases/default/lib/path-morph.ts",
+      "target": "src/remotion/lib/path-morph.ts",
+      "sha256": "f01c85f73eb9fe61f8825a191e0f3d600258c7495a533a00f2d5d754838fc907"
+    },
+    {
+      "component": "timing",
+      "registry_source": "registry/bases/default/lib/timing.ts",
+      "target": "src/remotion/lib/timing.ts",
+      "sha256": "54b974faf4eafe45cd9195e362e602c81044286791815e0554b50bf15f2c6ae2"
+    },
+    {
+      "component": "layout",
+      "registry_source": "registry/bases/default/lib/layout.ts",
+      "target": "src/remotion/lib/layout.ts",
+      "sha256": "344c03c20506938f69d914e76e177e439066f73c6342c35d0b844c5b4406baae"
+    }
+  ]
+}

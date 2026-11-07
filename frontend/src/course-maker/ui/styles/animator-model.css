@@ -1,0 +1,21 @@
+.animator-model {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+  min-width: 0;
+}
+.animator-model label {
+  font-size: 13px;
+  font-weight: 650;
+}
+.cm-app .animator-model select {
+  min-width: 0;
+  font-size: 13px;
+}
+.animator-model select:disabled {
+  opacity: 0.65;
+}
+.animator-model p {
+  margin: 0;
+  line-height: 1.6;
+}

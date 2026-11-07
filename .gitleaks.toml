@@ -1,0 +1,16 @@
+title = "Course Maker secret scanning"
+
+[extend]
+useDefault = true
+
+# Exact, nonfunctional credentials used only by deterministic test fixtures.
+# Do not exclude test directories: real credentials must still be detected there.
+[[allowlists]]
+description = "Known offline test fixture strings"
+regexTarget = "secret"
+regexes = [
+  '^lesson-quiz-test-secret-0123456789$',
+  '^lesson-quiz-live-test-secret-0123456789$',
+  '^internal-integration-key-32-characters$',
+  '^integration-test-private-key-32-characters$',
+]

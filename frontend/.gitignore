@@ -1,0 +1,10 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+
+# tsc -b build artifacts. vite.config.js in particular shadows vite.config.ts,
+# since Vite resolves .js before .ts when looking for its config.
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts

@@ -1,0 +1,62 @@
+{
+  "scope": "Static website imagery; excludes generated course/lesson media, user uploads, and course thumbnails.",
+  "visualDirection": "Flat editorial vector books and a compact book-and-leaf mark, retaining the page’s cream, apricot, sage, lavender, and butter palette. Solid fills, clean curves, restrained outlines; no photorealistic textures or lighting.",
+  "contentPlan": "Keep the current home-page copy, creation actions, workflow, and library; replace the decorative hero artwork and shared brand mark.",
+  "interactionPlan": "Retain the existing hero entrance, navigation hover/focus states, and reduced-motion behavior.",
+  "review": [
+    {
+      "asset": "home-imgFrame.svg (header and favicon)",
+      "finding": "Generic thin outline; weak silhouette at favicon sizes.",
+      "action": "Replaced both consumers with brand-mark.svg, a filled open book and growing leaf in a charcoal tile."
+    },
+    {
+      "asset": "home-imgFrame1.svg (home-page books)",
+      "finding": "The original geometric stack could use clearer covers and pages; the photographic replacement did not match the flat page styling.",
+      "action": "Replaced with a hand-authored SVG: an open butter-colored book, layered cream pages, sage and lavender closed books, a peach ribbon, and small accents matching the existing icon language."
+    },
+    {
+      "asset": "setup-imgFrame1.svg (Spark)",
+      "finding": "Clear small utility icon used in loading and guide/setup surfaces.",
+      "action": "Kept as vector; raster imagery would reduce small-size legibility."
+    },
+    {
+      "asset": "lesson-imgFrame1.svg (video play icon)",
+      "finding": "Recognizable control symbol.",
+      "action": "Kept as vector."
+    },
+    {
+      "asset": "public/styles/*.png",
+      "finding": "Previews communicate five distinct styles and match the underlying animator references.",
+      "action": "Kept to preserve the relationship between preview and resulting video style."
+    },
+    {
+      "asset": "*Thumbnail*.svg and thumbnails/*.svg",
+      "finding": "Course/lesson examples and fallbacks, outside this change's scope.",
+      "action": "Unchanged."
+    },
+    {
+      "asset": "Profile images and generated course/lesson media",
+      "finding": "User content.",
+      "action": "Unchanged."
+    }
+  ],
+  "logo": {
+    "path": "frontend/public/course-maker/brand-mark.svg",
+    "format": "Hand-authored SVG, 32 × 32; reused by header and favicon."
+  },
+  "heroAsset": {
+    "path": "frontend/public/course-maker/learning-books.svg",
+    "format": "Hand-authored SVG, viewBox 0 0 480 320; solid vector paths only.",
+    "consumer": "Books in frontend/src/course-maker/ui/components.tsx",
+    "design": "Curved open pages, isometric closed books, a peach backdrop and ribbon, restrained charcoal linework. No gradients, filters, embedded raster images, or external dependencies.",
+    "delivery": "A single scalable file replaces both WebP sizes. Explicit intrinsic dimensions preserve the existing 3:2 layout.",
+    "bytes": 3404
+  },
+  "validation": {
+    "browser": "SVG inspected in the existing home-page composition; layout and responsive CSS unchanged.",
+    "asset": "XML parses; only svg/title/g/path/circle elements; no external references or raster data.",
+    "build": "npm run build passed, including TypeScript, frontend boundaries, and answer prompt checks.",
+    "format": "Prettier and git diff --check passed.",
+    "screenshot": ".artifacts/static-imagery/home-svg.png (local ignored review artifact)"
+  }
+}

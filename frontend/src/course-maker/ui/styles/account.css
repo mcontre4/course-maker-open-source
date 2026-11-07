@@ -1,0 +1,95 @@
+.avatar {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.avatar-large {
+  width: 72px;
+  height: 72px;
+  font-size: 22px;
+}
+.settings-form {
+  max-width: 900px;
+}
+.settings-section {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--cm-line);
+}
+.settings-section h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.settings-fields {
+  display: grid;
+  gap: 24px;
+}
+.settings-fields label {
+  display: grid;
+  gap: 8px;
+}
+.picture-editor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.picture-actions {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.picture-actions input[type="file"] {
+  max-width: 100%;
+  padding: 8px;
+  min-height: 44px;
+}
+.text-button {
+  border: 0;
+  background: none;
+  padding: 4px 0;
+  text-align: left;
+  text-decoration: underline;
+  font-size: 13px;
+  width: fit-content;
+}
+.settings-save {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px 0;
+}
+.settings-save > p:first-child {
+  margin-right: auto;
+}
+.save-success {
+  color: var(--cm-green);
+  font-size: 14px;
+}
+@media (max-width: 760px) {
+  .settings-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 0;
+  }
+}
+@media (max-width: 580px) {
+  .picture-editor {
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .avatar-large {
+    width: 56px;
+    height: 56px;
+  }
+  .settings-save {
+    justify-content: flex-start;
+  }
+}

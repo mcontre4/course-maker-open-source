@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Inertia — a body in motion</title>
+  <desc id="desc">A peach ball continues along a straight track. Two equally spaced outlines mark its earlier positions, and an arrow indicates continued motion.</desc>
+  <defs>
+    <clipPath id="frame"><rect width="640" height="400" rx="32"/></clipPath>
+    <linearGradient id="ball" x1="404" y1="158" x2="483" y2="263" gradientUnits="userSpaceOnUse"><stop stop-color="#FBE4D5"/><stop offset="1" stop-color="#F2AE87"/></linearGradient>
+  </defs>
+  <g clip-path="url(#frame)">
+    <path fill="#E7DFF4" d="M0 0h640v400H0z"/>
+    <circle cx="338" cy="190" r="154" fill="#FAF8F3" opacity=".38"/>
+    <circle cx="338" cy="190" r="117" stroke="#FAF8F3" stroke-width="2" opacity=".7"/>
+    <path d="M-20 326 640 272v128H-20Z" fill="#DDD3EC"/>
+    <g stroke="#292B28" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m81 275 432-9 53 23-432 12Z" fill="#FAF8F3" stroke-width="3.5"/>
+      <path d="m134 301 432-12v16l-432 12Z" fill="#C4B3DA" stroke-width="3.5"/>
+      <path d="m81 275 53 26v16l-53-26Z" fill="#E7DFF4" stroke-width="3.5"/>
+      <path d="m164 301 18 9m62-11 18 9m62-11 18 9m62-11 18 9m62-11 18 9" stroke-width="2" opacity=".35"/>
+      <circle cx="170" cy="219" r="48" stroke-width="3" stroke-dasharray="5 8" opacity=".2"/>
+      <circle cx="300" cy="219" r="48" stroke-width="3" stroke-dasharray="5 8" opacity=".38"/>
+      <ellipse cx="433" cy="271" rx="47" ry="7" fill="#292B28" stroke="none" opacity=".1"/>
+      <circle cx="430" cy="219" r="48" fill="url(#ball)" stroke-width="4"/>
+      <path d="M410 184c-10 5-17 15-18 26" stroke="#FAF8F3" stroke-width="6"/>
+      <path d="M411 261c21 3 44-9 52-28" stroke="#B87757" stroke-width="2" opacity=".5"/>
+      <path d="M145 126h348m-17-13 17 13-17 13" stroke-width="3.5"/>
+      <path d="M170 117v18m130-18v18m130-18v18" stroke-width="2.5"/>
+      <path d="M492 201h38m-30 18h49m-57 18h29" stroke-width="3" opacity=".5"/>
+    </g>
+    <g fill="#292B28"><circle cx="170" cy="339" r="3" opacity=".3"/><circle cx="300" cy="339" r="3" opacity=".3"/><circle cx="430" cy="339" r="3" opacity=".3"/></g>
+    <path d="M99 83v16m-8-8h16" stroke="#FAF8F3" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">History — the ancient world</title>
+  <desc id="desc">An ivory classical temple with fluted columns, a terracotta sun, and a sage olive branch, illustrated in the website’s shared palette.</desc>
+  <defs><clipPath id="frame"><rect width="640" height="400" rx="32"/></clipPath></defs>
+  <g clip-path="url(#frame)">
+    <path fill="#FBE4D5" d="M0 0h640v400H0z"/>
+    <circle cx="337" cy="190" r="154" fill="#FAF8F3" opacity=".45"/>
+    <circle cx="437" cy="122" r="59" fill="#F2AE87"/>
+    <path d="M0 328c108-32 168-16 263-20 131-6 232-35 377-5v97H0Z" fill="#F0D6C4"/>
+    <g stroke="#292B28" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M175 153 314 79l139 74Z" fill="#FAF8F3"/>
+      <path d="m207 143 107-55 107 55Z" fill="#FBE4D5" stroke-width="2"/>
+      <circle cx="314" cy="120" r="11" fill="#F2AE87" stroke-width="2"/>
+      <path d="M175 153h278v19H175Z" fill="#FAF8F3"/>
+      <path d="M184 172h260v10H184Z" fill="#E3DCD0"/>
+      <path d="M199 183h35v106h-35zm98 0h35v106h-35zm98 0h35v106h-35z" fill="#FAF8F3"/>
+      <path d="M222 185v102m98-102v102m98-102v102" stroke="#D6CBBE" stroke-width="7"/>
+      <path d="M210 192v85m98-85v85m98-85v85" stroke-width="1.8" opacity=".5"/>
+      <path d="M194 181h45v9h-45zm98 0h45v9h-45zm98 0h45v9h-45z" fill="#FAF8F3"/>
+      <path d="M193 284h47v10h-47zm98 0h47v10h-47zm98 0h47v10h-47z" fill="#FAF8F3"/>
+      <path d="M181 294h266v14H181Z" fill="#FAF8F3"/>
+      <path d="M165 308h298v15H165Z" fill="#FAF8F3"/>
+      <path d="M149 323h330v15H149Z" fill="#FAF8F3"/>
+      <path d="M149 338h330" stroke-width="4"/>
+      <path d="M482 326c-8-49 9-95 48-136" stroke="#4D6B47" stroke-width="3"/>
+      <g fill="#A0B58F" stroke="#4D6B47" stroke-width="2">
+        <path d="M485 287c-27-8-37-25-33-43 21 5 32 21 33 43Z"/>
+        <path d="M486 279c3-25 16-39 36-41-1 21-15 35-36 41Z"/>
+        <path d="M501 244c-24-7-32-22-29-38 20 5 28 19 29 38Z"/>
+        <path d="M507 234c5-22 17-33 36-33-4 18-16 29-36 33Z"/>
+        <path d="M526 201c-12-19-10-35 1-47 12 16 11 32-1 47Z"/>
+      </g>
+      <path d="M111 338h17m371 0h35" stroke-width="2" opacity=".4"/>
+      <path d="M119 116h39m-19-9v18" stroke="#B87757" stroke-width="2" opacity=".6"/>
+    </g>
+  </g>
+</svg>

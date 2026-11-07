@@ -1,0 +1,1057 @@
+/*
+ * Home: start something new, pick up your own work, then discover.
+ * Pastels follow the lesson workflow: lavender = in progress or guide,
+ * sage = done, apricot = needs your review.
+ */
+.heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.heading-row .page-heading {
+  gap: 8px;
+}
+.heading-row .btn {
+  flex-shrink: 0;
+}
+.home {
+  --cm-night: #2b2438;
+  --cm-night-muted: #c9c1d6;
+  /* Matches .workspace side padding, so rows can reach the page edge. */
+  --home-bleed: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  min-width: 0;
+}
+
+/* ---------- Hero: two ways to start ---------- */
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 36px 40px;
+  padding: 52px 52px 0;
+  border-radius: 28px;
+  background: var(--cm-apricot);
+  overflow: hidden;
+}
+.home-hero-intro {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+.home-hero h1 {
+  max-width: 14ch;
+  font-size: clamp(38px, 4.4vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+.home-hero-intro p {
+  max-width: 46ch;
+  font-size: 17px;
+  color: rgba(41, 43, 40, 0.74);
+}
+.home-hero .books {
+  align-self: center;
+  width: 300px;
+  height: auto;
+  animation: float-in 0.7s ease both;
+}
+.home-create-options {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.home-create-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 28px;
+  border: 1px solid rgba(41, 43, 40, 0.06);
+  border-radius: 20px;
+  background: var(--cm-surface);
+  transition: box-shadow 0.2s ease;
+}
+.home-create-option:hover {
+  box-shadow: var(--cm-shadow-float);
+}
+.home-create-option h2 {
+  margin-top: 12px;
+  font-size: 22px;
+}
+.home-create-option p {
+  max-width: 40ch;
+  color: var(--cm-muted);
+}
+.home-create-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+}
+.home-create-option .home-create-meta {
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: var(--cm-bg);
+  color: var(--cm-ink);
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.home-create-option .btn {
+  margin-top: 18px;
+}
+/* The whole option is clickable; the button stays the focus target.
+   No lift on hover: a transformed button would capture the overlay. */
+.cm-app .home-create-option .btn:hover:not(:disabled) {
+  transform: none;
+}
+.home-create-option .btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+}
+.home-create-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+.home-create-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--cm-ink);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.home-steps {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 16px;
+  margin: 0 -52px;
+  padding: 20px 52px;
+  border-top: 1px solid rgba(41, 43, 40, 0.08);
+  background: rgba(255, 255, 255, 0.38);
+  list-style: none;
+}
+.home-steps li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.home-steps li::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(41, 43, 40, 0.1);
+}
+.home-steps li:last-child {
+  flex: 0 0 auto;
+}
+.home-steps li:last-child::after {
+  display: none;
+}
+.home-steps b {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--cm-line-strong);
+  border-radius: 50%;
+  background: var(--cm-surface);
+  font-size: 13px;
+}
+.home-steps span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.home-steps small {
+  color: var(--cm-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ---------- Section headings ---------- */
+.home-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.home-section-heading h2 {
+  font-size: 26px;
+  line-height: 1.2;
+}
+.home-section-heading h3 {
+  font-size: 20px;
+  line-height: 1.25;
+}
+.home-section-heading p {
+  margin-top: 4px;
+  font-size: 14px;
+}
+/* ---------- Course cards ---------- */
+.course-stack {
+  display: grid;
+  gap: 16px;
+}
+.course-card {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr) minmax(200px, 248px);
+  gap: 28px;
+  padding: 20px;
+  border: 1px solid var(--cm-line);
+  border-radius: 20px;
+  background: var(--cm-surface);
+  transition: border-color 0.2s ease;
+}
+.course-card:hover {
+  border-color: var(--cm-line-strong);
+}
+.course-card-cover {
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  background: var(--cm-lavender);
+  overflow: hidden;
+}
+.course-card-cover .thumbnail {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 0;
+}
+.course-card-cover .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.course-card-body {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 8px;
+  min-width: 0;
+  padding-top: 2px;
+}
+.course-card-body h3 {
+  margin-top: 6px;
+  font-size: 21px;
+  line-height: 1.25;
+}
+.course-card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.course-card-progress {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 8px;
+}
+.course-card .workflow-status[data-tone="progress"] {
+  border-color: transparent;
+  background: var(--cm-lavender);
+}
+.course-card .workflow-status[data-tone="progress"]::before {
+  background: var(--cm-violet);
+}
+.course-card-next {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 14px;
+  background: var(--cm-bg);
+}
+.course-card-next p {
+  display: grid;
+  gap: 4px;
+}
+.course-card-next strong {
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.course-card-next .btn {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* ---------- Featured banner: the one dark moment on a light page ---------- */
+.home-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  min-height: 340px;
+  border-radius: 28px;
+  background: var(--cm-night);
+  color: #fff;
+  overflow: hidden;
+}
+.home-feature-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 44px 48px;
+}
+.home-feature-eyebrow {
+  color: var(--cm-night-muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+.home-feature h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+.home-feature-detail {
+  color: var(--cm-night-muted);
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.home-feature .workflow-status {
+  max-width: 100%;
+  color: var(--cm-ink);
+  white-space: normal;
+}
+.home-feature-progress {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 340px);
+  color: var(--cm-night-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.home-feature-progress progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.22);
+}
+.home-feature-progress progress::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.22);
+}
+.home-feature-progress progress::-webkit-progress-value {
+  background: var(--cm-lavender);
+}
+.home-feature-progress progress::-moz-progress-bar {
+  background: var(--cm-lavender);
+}
+.cm-app .home-feature-action {
+  margin-top: 10px;
+  background: #fff;
+  color: var(--cm-ink);
+}
+.home-feature-art {
+  min-width: 0;
+  background: var(--cm-lavender);
+}
+.home-feature-art .thumbnail {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 0;
+}
+.home-feature-art .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Sideways rows ---------- */
+.home-rail,
+.home-topics {
+  min-width: 0;
+}
+.home-rail {
+  --home-card-width: clamp(210px, 19vw, 272px);
+}
+.home-rail[data-size="wide"] {
+  --home-card-width: clamp(250px, 25vw, 352px);
+}
+.home-rail-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.home-rail-heading h2 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.home-rail-heading a {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.home-rail-body {
+  position: relative;
+}
+/* The row runs to the page edge, so a cut-off card shows there is more. */
+.home-rail-track {
+  display: flex;
+  gap: 18px;
+  margin: -10px calc(var(--home-bleed) * -1);
+  padding: 10px var(--home-bleed);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--home-bleed);
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+.home-rail-track::-webkit-scrollbar {
+  display: none;
+}
+.home-card {
+  flex: 0 0 var(--home-card-width);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.home-card a {
+  display: grid;
+  gap: 4px;
+  text-decoration: none;
+}
+.home-card strong {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 15px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.home-card a:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.home-card-detail {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--cm-muted);
+  font-size: 13px;
+  line-height: 1.45;
+  overflow: hidden;
+}
+.home-card-art {
+  position: relative;
+  display: block;
+  margin-bottom: 6px;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  background: var(--cm-lavender);
+  overflow: hidden;
+}
+.home-card-art .thumbnail {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 0;
+}
+.home-card-art .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.home-card a:hover .home-card-art img {
+  transform: scale(1.03);
+}
+.home-card-art .workflow-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: calc(100% - 20px);
+  padding: 5px 10px 5px 9px;
+  font-size: 11.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.home-card-art progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  border-radius: 0;
+}
+.home-rail-arrow {
+  position: absolute;
+  top: calc(var(--home-card-width) * 9 / 32 - 22px);
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--cm-line);
+  border-radius: 50%;
+  background: var(--cm-surface);
+  box-shadow: var(--cm-shadow-float);
+}
+.home-rail-arrow::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--cm-ink);
+  border-right: 2px solid var(--cm-ink);
+}
+.home-rail-arrow[data-direction="forward"] {
+  right: -22px;
+}
+.home-rail-arrow[data-direction="forward"]::before {
+  left: 13px;
+  transform: rotate(45deg);
+}
+.home-rail-arrow[data-direction="back"] {
+  left: -22px;
+}
+.home-rail-arrow[data-direction="back"]::before {
+  left: 17px;
+  transform: rotate(-135deg);
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 581px) {
+  .home-rail-arrow {
+    display: block;
+  }
+}
+.home-rail-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px dashed var(--cm-line-strong);
+  border-radius: 16px;
+}
+.home-skeleton {
+  background: var(--cm-track);
+}
+
+/* ---------- Browse by topic ---------- */
+.home-topics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.home-topics-grid a {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease;
+}
+.home-topics-grid a:hover {
+  box-shadow: var(--cm-shadow-float);
+}
+.home-topics-grid a[data-tone="lavender"] {
+  background: var(--cm-lavender);
+}
+.home-topics-grid a[data-tone="apricot"] {
+  background: var(--cm-apricot);
+}
+.home-topics-grid a[data-tone="sage"] {
+  background: var(--cm-sage);
+}
+.home-topic-symbol {
+  min-height: 44px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+.home-topics-grid strong {
+  font-size: 17px;
+  letter-spacing: -0.025em;
+}
+.home-topic-blurb {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(41, 43, 40, 0.74);
+}
+
+.discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px 20px;
+  align-items: start;
+}
+.discovery-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+.discovery-card-art {
+  position: relative;
+  display: block;
+  margin-bottom: 8px;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  background: var(--cm-lavender);
+  overflow: hidden;
+}
+.discovery-card-art .thumbnail {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 0;
+}
+.discovery-card-art .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.discovery-card:hover .discovery-card-art img {
+  transform: scale(1.03);
+}
+.discovery-card-duration {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  background: rgba(41, 43, 40, 0.8);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.discovery-card h3,
+.discovery-card h4 {
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+.discovery-card > p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.discovery-card-action {
+  margin-top: 4px;
+  width: fit-content;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.discovery-card:hover .discovery-card-action {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* A course card is an article; its one link covers the whole card. */
+article.discovery-card .discovery-card-action::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.discovery-empty {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  padding: 28px;
+  border: 1px dashed var(--cm-line-strong);
+  border-radius: 16px;
+  font-size: 14px;
+}
+.discovery-empty h2,
+.discovery-empty h4 {
+  font-size: 17px;
+}
+.discovery-empty a {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.status-panel,
+.empty-state {
+  padding: 48px;
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+}
+@media (max-width: 1150px) {
+  .home {
+    --home-bleed: 40px;
+  }
+  .home-hero {
+    padding: 44px 40px 0;
+  }
+  .home-hero .books {
+    width: 240px;
+  }
+  .home-steps {
+    margin: 0 -40px;
+    padding: 20px 40px;
+  }
+  .course-card {
+    grid-template-columns: 168px minmax(0, 1fr);
+    gap: 20px 24px;
+  }
+  .course-card-next {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+  }
+  .course-card-next .btn {
+    width: auto;
+    margin: 0 0 0 auto;
+    flex-shrink: 0;
+  }
+  .discovery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1000px) {
+  .home {
+    --home-bleed: 24px;
+  }
+}
+@media (max-width: 850px) {
+  .heading-row {
+    align-items: start;
+  }
+  .heading-row h1 {
+    font-size: 27px;
+  }
+  .home {
+    gap: 44px;
+  }
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+  .home-hero .books {
+    display: none;
+  }
+  .home-steps {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .home-steps li::after {
+    display: none;
+  }
+  .home-steps span {
+    white-space: normal;
+  }
+  .discovery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .home-feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .home-feature-art {
+    grid-row: 1;
+    aspect-ratio: 16 / 9;
+  }
+  .home-feature-copy {
+    padding: 32px;
+  }
+  .home-topics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .home-create-options {
+    grid-template-columns: 1fr;
+  }
+  .course-card {
+    grid-template-columns: 1fr;
+  }
+  .course-card-cover {
+    aspect-ratio: 16 / 9;
+  }
+  .course-card-next {
+    grid-column: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .course-card-next .btn {
+    width: 100%;
+    margin: 0;
+  }
+}
+@media (max-width: 580px) {
+  .heading-row {
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+  }
+  .home-hero {
+    gap: 24px;
+    padding: 32px 20px 0;
+    border-radius: 22px;
+  }
+  .home-hero h1 {
+    font-size: 36px;
+  }
+  .home-hero-intro p {
+    font-size: 15px;
+  }
+  .home-create-option {
+    padding: 22px;
+  }
+  .home-create-option .btn {
+    width: 100%;
+  }
+  .home-steps {
+    margin: 0 -20px;
+    padding: 20px;
+  }
+  .home-section-heading h2 {
+    font-size: 22px;
+  }
+  .course-card {
+    padding: 16px;
+  }
+  .discovery-grid {
+    grid-template-columns: 1fr;
+  }
+  .home {
+    --home-bleed: 20px;
+  }
+  .home-rail {
+    --home-card-width: 62vw;
+  }
+  .home-rail[data-size="wide"] {
+    --home-card-width: 76vw;
+  }
+  .home-rail-heading h2 {
+    font-size: 21px;
+  }
+  .home-feature {
+    border-radius: 22px;
+  }
+  .home-feature-copy {
+    padding: 24px 20px 28px;
+  }
+  .home-topics-grid {
+    gap: 12px;
+  }
+  .home-topics-grid a {
+    padding: 18px;
+  }
+  .status-panel {
+    padding: 28px 0;
+  }
+  .empty-state {
+    padding: 28px 20px;
+  }
+}
+@media (max-width: 760px) {
+  .home {
+    --home-bleed: var(--cm-gutter);
+    gap: 36px;
+  }
+  /* Someone with unfinished work came back to finish it. */
+  .home-feature[data-priority] {
+    order: -1;
+  }
+  .home-hero {
+    gap: 18px;
+    padding: 24px var(--cm-gutter) 0;
+    border-radius: 22px;
+  }
+  .home-hero h1 {
+    max-width: none;
+    font-size: 30px;
+  }
+  .home-hero-intro {
+    gap: 10px;
+  }
+  .home-hero-intro p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .home-create-options {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .home-create-option {
+    padding: 16px;
+    border-radius: 18px;
+  }
+  .home-create-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+  .home-create-option h2 {
+    margin-top: 8px;
+    font-size: 20px;
+  }
+  .home-create-option .btn {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .home-steps {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 calc(var(--cm-gutter) * -1);
+    padding: 14px var(--cm-gutter);
+  }
+  .home-steps li,
+  .home-steps li:last-child {
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .home-steps b {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+  .home-steps span {
+    font-size: 12.5px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+  .home-steps small {
+    display: none;
+  }
+  /* Returning learners know how this works: the heading and the button will do. */
+  .home-hero[data-returning="true"] {
+    gap: 14px;
+    padding-bottom: 16px;
+  }
+  .home-hero[data-returning="true"] .home-hero-intro p,
+  .home-hero[data-returning="true"] .home-steps,
+  .home-hero[data-returning="true"] .home-create-top,
+  .home-hero[data-returning="true"] .home-create-option h2,
+  .home-hero[data-returning="true"] .home-create-option > p {
+    display: none;
+  }
+  .home-hero[data-returning="true"] h1 {
+    font-size: 26px;
+  }
+  .home-hero[data-returning="true"] .home-create-option {
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  .home-hero[data-returning="true"] .home-create-option .btn {
+    margin-top: 0;
+  }
+  .home-feature {
+    min-height: 0;
+    border-radius: 22px;
+  }
+  .home-feature.home-skeleton {
+    min-height: 260px;
+  }
+  .home-feature-copy {
+    gap: 8px;
+    padding: 18px var(--cm-gutter) 20px;
+  }
+  .home-feature h2 {
+    font-size: 24px;
+  }
+  .cm-app .home-feature-action {
+    width: 100%;
+    margin-top: 6px;
+  }
+  .home-rail-heading h2 {
+    font-size: 21px;
+  }
+  /* The label stays small; the area around it takes the tap. */
+  .home-rail-heading a {
+    margin: -13px 0;
+    padding: 13px 0;
+  }
+  .home-rail-track {
+    gap: 14px;
+  }
+  .home-card-art .workflow-status,
+  .discovery-card-duration {
+    font-size: 12px;
+  }
+  .home-topics-grid a {
+    padding: 16px;
+    border-radius: 18px;
+  }
+  .home-topic-symbol {
+    min-height: 34px;
+    font-size: 22px;
+  }
+}
+@media (hover: none) {
+  .home-card a:hover .home-card-art img,
+  .discovery-card:hover .discovery-card-art img {
+    transform: none;
+  }
+  .home-create-option:hover,
+  .home-topics-grid a:hover {
+    box-shadow: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-create-option,
+  .course-card,
+  .home-card-art .thumbnail img,
+  .home-topics-grid a,
+  .discovery-card-art .thumbnail img {
+    transition: none;
+  }
+  .home-card a:hover .home-card-art img {
+    transform: none;
+  }
+}
+
+.creation-fields {
+  display: contents;
+}
+
+/* ---------- My library ---------- */
+.library-heading {
+  margin-bottom: 14px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.home-create-note {
+  margin-top: 12px;
+  color: var(--cm-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}

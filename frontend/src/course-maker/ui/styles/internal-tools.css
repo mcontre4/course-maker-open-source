@@ -1,0 +1,74 @@
+.internal-tools-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+.internal-tools-page > nav {
+  margin: 24px 0 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--cm-line);
+  color: var(--cm-green);
+}
+.internal-tools-page h2,
+.internal-tools-page h3 {
+  margin-bottom: 8px;
+}
+.internal-lookup {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(240px, 2fr) auto;
+  gap: 16px;
+  align-items: end;
+  margin: 24px 0;
+}
+.internal-lookup label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.internal-lookup input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--cm-line-strong);
+  border-radius: 8px;
+  background: var(--cm-field);
+  color: var(--cm-ink);
+}
+.internal-lookup button {
+  min-height: 46px;
+}
+.internal-result {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--cm-line);
+}
+.internal-result .spend-details {
+  max-width: none;
+  margin-top: 24px;
+  font-size: 14px;
+}
+.internal-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 64px;
+  margin: 24px 0 16px;
+}
+.internal-metrics dt {
+  color: var(--cm-muted);
+  font-size: 13px;
+}
+.internal-metrics dd {
+  margin: 8px 0 0;
+  font-size: 26px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 720px) {
+  .internal-tools-page {
+    padding: 24px 16px 48px;
+  }
+  .internal-lookup {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,8 @@
+.lesson-code-player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 0;
+  border-radius: inherit;
+  background: #090b2c;
+}

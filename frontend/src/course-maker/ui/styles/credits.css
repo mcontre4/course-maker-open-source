@@ -1,0 +1,372 @@
+/* Credits: header chip, balance card, pack picker and activity list. */
+
+/* ---------- Header chip ---------- */
+.profile {
+  gap: 10px;
+}
+.credit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 8px 0 12px;
+  border: 1px solid var(--cm-line);
+  border-radius: 100px;
+  background: var(--cm-surface);
+  color: var(--cm-ink);
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease;
+}
+.credit-chip:hover {
+  border-color: var(--cm-line-strong);
+  background: var(--cm-field);
+}
+.coin-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: var(--cm-apricot);
+  stroke: var(--cm-attention);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.credit-chip-plus {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cm-track);
+  color: var(--cm-muted);
+  font-size: 15px;
+  line-height: 1;
+}
+.credit-chip-low {
+  border-color: #e9c7be;
+}
+.credit-chip-empty {
+  border-color: var(--cm-attention);
+  background: #fff3ef;
+}
+.credit-chip-low .credit-chip-plus,
+.credit-chip-empty .credit-chip-plus {
+  background: var(--cm-ink);
+  color: white;
+}
+
+/* ---------- Page ---------- */
+.credits-layout {
+  display: grid;
+  gap: 40px;
+  max-width: 900px;
+  margin-top: 32px;
+}
+.credits-section {
+  display: grid;
+  gap: 20px;
+}
+.credits-section > h2 {
+  font-size: 20px;
+}
+
+/* Balance */
+.credit-balance-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px 20px;
+  padding: 24px 28px;
+  border: 1px solid var(--cm-line);
+  border-radius: var(--cm-radius);
+  background: var(--cm-surface);
+}
+.credit-balance-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--cm-apricot);
+  grid-row: span 2;
+}
+.credit-balance-icon .coin-icon {
+  width: 34px;
+  height: 34px;
+  fill: white;
+}
+.credit-balance-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.credit-balance-value strong {
+  font-size: clamp(34px, 5vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+.credit-balance-value span {
+  color: var(--cm-muted);
+  font-weight: 700;
+}
+.credit-balance-hint {
+  grid-column: 2;
+  color: var(--cm-muted);
+  font-size: 14px;
+}
+.credit-balance-low {
+  border-color: #e9c7be;
+}
+.credit-balance-empty {
+  border-color: var(--cm-attention);
+  background: #fff3ef;
+}
+.credit-balance-empty .credit-balance-hint,
+.credit-balance-low .credit-balance-hint {
+  color: #943c31;
+  font-weight: 650;
+}
+
+/* Packs */
+.credit-packs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.credit-pack {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 28px 22px 22px;
+  border: 1.5px solid var(--cm-line);
+  border-radius: var(--cm-radius);
+  background: var(--cm-surface);
+  cursor: pointer;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+.credit-pack:hover {
+  border-color: var(--cm-line-strong);
+}
+.credit-pack.is-selected {
+  border-color: var(--cm-ink);
+  box-shadow: 0 0 0 1px var(--cm-ink);
+}
+.credit-pack:has(input:focus-visible) {
+  outline: 3px solid #7d659d;
+  outline-offset: 4px;
+}
+fieldset:disabled .credit-pack {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.credit-pack-badge {
+  position: absolute;
+  top: -11px;
+  left: 18px;
+  padding: 3px 11px;
+  border-radius: 100px;
+  background: var(--cm-lavender);
+  color: var(--cm-violet);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.credit-pack-name {
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--cm-muted);
+}
+.credit-pack-credits {
+  color: var(--cm-muted);
+  font-size: 14px;
+}
+.credit-pack-credits strong {
+  color: var(--cm-ink);
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.credit-pack-bonus {
+  min-height: 1.4em;
+  color: var(--cm-green);
+  font-size: 13px;
+  font-weight: 700;
+}
+.credit-pack-price {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 800;
+}
+.credits-checkout {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+/* Notices */
+.credits-notice {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--cm-line);
+  border-radius: 14px;
+  background: var(--cm-surface);
+}
+.credits-notice-body {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  margin-top: 4px;
+  color: var(--cm-muted);
+  font-size: 14px;
+}
+.credits-notice-success {
+  border-color: #c4d6bb;
+  background: #f1f6ed;
+}
+.credits-notice-success strong {
+  color: var(--cm-green);
+}
+.credits-notice-error {
+  border-color: #e9c7be;
+  background: #fff3ef;
+}
+.credits-notice .text-button {
+  flex-shrink: 0;
+}
+
+/* Activity */
+.credit-activity {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--cm-line);
+  border-radius: var(--cm-radius);
+  background: var(--cm-surface);
+}
+.credit-activity li {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+}
+.credit-activity li + li {
+  border-top: 1px solid var(--cm-line);
+}
+.credit-activity-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.credit-activity-text strong {
+  font-size: 14.5px;
+  overflow-wrap: anywhere;
+}
+.credit-kind {
+  justify-self: start;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--cm-track);
+  color: var(--cm-muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+.credit-kind-purchase,
+.credit-kind-bonus {
+  background: var(--cm-sage);
+  color: var(--cm-green);
+}
+.credit-kind-usage {
+  background: var(--cm-lavender);
+  color: var(--cm-violet);
+}
+.credit-delta {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.credit-delta-in {
+  color: var(--cm-green);
+}
+.credit-delta-out {
+  color: var(--cm-ink);
+}
+.credit-activity + .btn {
+  justify-self: start;
+}
+
+/* Out-of-credits prompt next to errors */
+.error-notice-action {
+  margin-left: 8px;
+  font-weight: 750;
+}
+
+@media (max-width: 580px) {
+  .credit-balance-card {
+    padding: 20px;
+    grid-template-columns: 1fr;
+  }
+  .credit-balance-icon {
+    display: none;
+  }
+  .credit-balance-hint {
+    grid-column: 1;
+  }
+  .credit-activity li {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 12px;
+    padding: 14px 18px;
+  }
+  .credit-kind {
+    grid-column: 1 / -1;
+  }
+  .profile {
+    gap: 6px;
+  }
+  .brand {
+    white-space: nowrap;
+  }
+  .credit-chip {
+    padding: 0 12px 0 10px;
+  }
+  .credit-chip-plus {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .credit-chip {
+    padding: 0 12px 0 10px;
+  }
+  .credit-chip-plus {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .credit-chip {
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .credit-pack,
+  .credit-chip {
+    transition: none;
+  }
+}

@@ -1,0 +1,26 @@
+import { z } from "zod";
+
+export const styleSchema = z.object({
+  visualStyleId: z.string().optional(),
+  visualStyleVersion: z.number().int().positive().optional(),
+  reviewOutput: z.boolean().optional(),
+  resolved: z.boolean().optional(),
+  accent: z.string().default("American"),
+  tone: z.string().default(""),
+  requestedPacing: z.string().default(""),
+  requestedVoiceId: z.string().optional(),
+  voiceNotice: z.string().optional(),
+  request: z.string(),
+  audience: z.string(),
+  summary: z.string(),
+  teaching: z.string(),
+  writing: z.string(),
+  visuals: z.string(),
+  motion: z.string(),
+  pacing: z.string(),
+  voiceDescription: z.string(),
+  delivery: z.string(),
+  voiceId: z.string(),
+  voiceName: z.string(),
+  version: z.number().int().positive(),
+});

@@ -1,0 +1,234 @@
+/* Copy lesson: a centered card on desktop that docks to the bottom on phones. */
+.copy-sheet {
+  width: min(460px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: 28px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--cm-surface);
+  color: var(--cm-ink);
+  box-shadow:
+    0 44px 90px -28px rgba(41, 43, 40, 0.5),
+    0 2px 8px rgba(41, 43, 40, 0.08);
+  animation: copy-sheet-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.copy-sheet::backdrop {
+  background: rgba(41, 43, 40, 0.4);
+  backdrop-filter: blur(3px);
+  animation: copy-sheet-fade 0.24s ease-out;
+}
+body:has(.copy-sheet[open]) {
+  overflow: hidden;
+}
+.copy-sheet-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The source thumbnail, shown as the top card of a small stack. */
+.copy-sheet-art {
+  position: relative;
+  padding: 36px 44px 26px;
+  background: var(--cm-bg);
+  border-bottom: 1px solid var(--cm-line);
+}
+.copy-sheet-cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--cm-surface);
+  box-shadow:
+    0 14px 26px -14px rgba(41, 43, 40, 0.45),
+    0 0 0 1px rgba(41, 43, 40, 0.08);
+}
+.copy-sheet-cover .thumbnail {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  border-radius: 0;
+}
+.copy-sheet-cover .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.copy-sheet-ghost {
+  position: absolute;
+  inset: 36px 44px 26px;
+  border: 1px solid var(--cm-line-strong);
+  border-radius: 14px;
+}
+.copy-sheet-ghost-back {
+  background: var(--cm-lavender);
+  transform: translate(16px, -14px) rotate(3deg);
+  animation: copy-sheet-fan-back 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.15) 0.14s
+    backwards;
+}
+.copy-sheet-ghost-front {
+  background: var(--cm-sage);
+  transform: translate(8px, -7px) rotate(1.5deg);
+  animation: copy-sheet-fan-front 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.15) 0.1s
+    backwards;
+}
+.copy-sheet-art[data-empty] .copy-sheet-cover {
+  background: var(--cm-track);
+  box-shadow: inset 0 0 0 1.5px var(--cm-line-strong);
+}
+.copy-sheet-blank {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--cm-muted);
+}
+.copy-sheet-blank svg {
+  width: 40px;
+  height: 40px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.copy-sheet-body {
+  padding: 26px 32px 4px;
+}
+.copy-sheet-about {
+  margin-top: 6px;
+  color: var(--cm-muted);
+  font-size: 14px;
+}
+.copy-sheet-field {
+  display: block;
+  margin-top: 22px;
+}
+.copy-sheet-field > span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 750;
+}
+.copy-sheet-field input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1.5px solid var(--cm-line-strong);
+  border-radius: 14px;
+  background: var(--cm-field);
+  color: var(--cm-ink);
+  font-size: 16px;
+  font-weight: 650;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease;
+}
+.copy-sheet-field input:focus-visible {
+  outline: 2px solid transparent;
+  border-color: var(--cm-violet);
+  box-shadow: 0 0 0 4px rgba(111, 90, 150, 0.2);
+}
+.copy-sheet-field input[aria-invalid="true"] {
+  border-color: var(--cm-attention);
+}
+.copy-sheet-field input:disabled {
+  opacity: 0.6;
+}
+.copy-sheet-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 10px;
+  color: var(--cm-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.copy-sheet-count {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.copy-sheet-body .error-notice {
+  margin-top: 14px;
+}
+.copy-sheet-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 22px 32px 28px;
+}
+.copy-sheet-actions .btn {
+  min-width: 112px;
+}
+.copy-sheet-actions .loading-spinner {
+  margin-inline-end: 0;
+}
+
+@keyframes copy-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+@keyframes copy-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes copy-sheet-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes copy-sheet-fan-back {
+  from {
+    transform: none;
+  }
+}
+@keyframes copy-sheet-fan-front {
+  from {
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .copy-sheet {
+    width: 100%;
+    max-height: 92dvh;
+    margin: auto 0 0;
+    border-radius: 28px 28px 0 0;
+    animation-name: copy-sheet-up;
+    animation-duration: 0.34s;
+  }
+  .copy-sheet-art {
+    padding: 30px 36px 22px;
+  }
+  .copy-sheet-ghost {
+    inset: 30px 36px 22px;
+  }
+  .copy-sheet-body {
+    padding: 22px 20px 4px;
+  }
+  .copy-sheet-actions {
+    flex-direction: column-reverse;
+    padding: 18px 20px calc(22px + env(safe-area-inset-bottom));
+  }
+  .copy-sheet-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy-sheet,
+  .copy-sheet::backdrop,
+  .copy-sheet-ghost {
+    animation: none;
+  }
+  .copy-sheet-field input {
+    transition: none;
+  }
+}

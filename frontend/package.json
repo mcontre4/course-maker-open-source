@@ -1,0 +1,52 @@
+{
+  "name": "course-maker-ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run check:boundaries && npm run check:answer-prompt && tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:boundaries": "node scripts/check-boundaries.mjs",
+    "format": "prettier --write src/course-maker src/App.tsx src/main.tsx src/test/setup.ts scripts",
+    "format:check": "prettier --check src/course-maker src/App.tsx src/main.tsx src/test/setup.ts scripts",
+    "generate:answer-prompt": "tsx scripts/generate-answer-prompt.ts",
+    "check:answer-prompt": "tsx scripts/generate-answer-prompt.ts --check",
+    "test:e2e": "playwright test",
+    "test:e2e:auth": "playwright test --config playwright.auth.config.ts",
+    "test:e2e:legacy-auth": "playwright test --config playwright.legacy-auth.config.ts"
+  },
+  "dependencies": {
+    "@assistant-ui/react": "^0.15.32",
+    "@assistant-ui/react-markdown": "^0.14.24",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@hookform/resolvers": "^6.0.2",
+    "@openuidev/react-lang": "^1.0.2",
+    "@tanstack/react-query": "^5.105.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.91.0",
+    "react-router-dom": "^7.18.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "jsdom": "^29.1.1",
+    "prettier": "3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "6.0.3",
+    "vite": "^8.3.5",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "procedure",
+  "title": "Follow an action and verify its result",
+  "origin": {
+    "style_id": null,
+    "note": "Executable choreography study; adapt artwork to the selected style."
+  },
+  "narration_and_visual_sequence": [
+    {
+      "at_sec": 2,
+      "narration": "Move the document into the folder.",
+      "focus": "document",
+      "relationship": "The same document travels to its destination.",
+      "action": "Establish the document and folder; move the document.",
+      "hold": "Keep destination recognizable."
+    },
+    {
+      "at_sec": 9,
+      "narration": "Open the destination.",
+      "focus": "folder",
+      "relationship": "Opening reveals the result of the earlier action.",
+      "action": "Open the folder while retaining document identity.",
+      "hold": "Keep the document unobscured."
+    },
+    {
+      "at_sec": 15,
+      "narration": "Check that the document is inside.",
+      "focus": "document inside folder",
+      "relationship": "Verification confirms completion.",
+      "action": "Add a small check beside the actual document.",
+      "hold": "Hold the verified result."
+    }
+  ],
+  "improvement_target": "Use one dominant subject, develop the relationship visibly, retire old labels, then hold the result.",
+  "adaptation": "Borrow explanatory structure and object continuity. Selected STYLE.md governs artwork. Do not copy topic facts, timing or imperfections."
+}

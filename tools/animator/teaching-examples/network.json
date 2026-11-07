@@ -1,0 +1,36 @@
+{
+  "id": "network",
+  "title": "Silk Roads: local exchange becomes a network",
+  "origin": {
+    "generation_source_sha256": "f8900f923d7c8c7bd13021d0aa5837245a7209bdb17e13d4fb6174ced46e495a",
+    "style_id": "flat-vector-science"
+  },
+  "narration_and_visual_sequence": [
+    {
+      "at_sec": 13,
+      "narration": "Merchants exchanged goods at intermediate stops.",
+      "focus": "goods at oasis",
+      "relationship": "Successive local exchanges connect distant places.",
+      "action": "Move into one exchange; transfer one recognizable object between merchants.",
+      "hold": "Briefly settle the transfer."
+    },
+    {
+      "at_sec": 30,
+      "narration": "Goods and ideas spread through repeated exchanges.",
+      "focus": "same object across linked stops",
+      "relationship": "Local interactions compose the larger network.",
+      "action": "Follow the object through a second exchange, then pull back along its route.",
+      "hold": "Keep the active route prominent."
+    },
+    {
+      "at_sec": 42,
+      "narration": "Distinct cultures became linked across the network.",
+      "focus": "connected destinations",
+      "relationship": "The large network is explained by the exchanges already seen.",
+      "action": "Pull back to a simplified network; retire close-up labels.",
+      "hold": "Hold the completed relationship."
+    }
+  ],
+  "improvement_target": "The source is a useful starting point, not the finish standard: repeated camels and small distant nodes compete. Improve character silhouettes and goods, enlarge the active exchange, simplify inactive routes, and let each new narrated relationship change the picture. Preserve the coherent oasis-to-network transition.",
+  "adaptation": "Borrow explanatory structure and object continuity. Selected STYLE.md governs artwork. Do not copy topic facts, timing or imperfections."
+}

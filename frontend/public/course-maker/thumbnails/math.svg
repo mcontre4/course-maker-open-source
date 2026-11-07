@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Math — the beauty of geometry</title>
+  <desc id="desc">A right triangle on ivory graph paper with a lavender circular construction and an apricot pencil. A small square identifies the right angle.</desc>
+  <defs>
+    <clipPath id="frame"><rect width="640" height="400" rx="32"/></clipPath>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0v28" stroke="#A0B58F" stroke-width="1" opacity=".3"/></pattern>
+    <clipPath id="paper"><rect x="141" y="61" width="352" height="280" rx="12"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <path fill="#DDE8D5" d="M0 0h640v400H0z"/>
+    <circle cx="328" cy="190" r="154" fill="#FAF8F3" opacity=".4"/>
+    <path d="M0 331c193-21 379-25 640-5v74H0Z" fill="#CEDCC4"/>
+    <rect x="151" y="70" width="352" height="280" rx="12" fill="#4D6B47" opacity=".09"/>
+    <rect x="141" y="61" width="352" height="280" rx="12" fill="#FAF8F3" stroke="#292B28" stroke-width="3.5"/>
+    <g clip-path="url(#paper)">
+      <path fill="url(#grid)" d="M141 61h352v280H141z"/>
+      <circle cx="317" cy="205" r="99" fill="#E7DFF4" opacity=".6"/>
+      <circle cx="317" cy="205" r="99" stroke="#847396" stroke-width="2" stroke-dasharray="5 7"/>
+      <path d="M218 280V132l198 148Z" fill="#DDE8D5" fill-opacity=".7" stroke="#292B28" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M218 132 416 280" stroke="#4D6B47" stroke-width="4" stroke-linecap="round"/>
+      <path d="M218 256h24v24" stroke="#292B28" stroke-width="2.5"/>
+      <path d="M370 280c0-10 4-20 10-27" stroke="#4D6B47" stroke-width="2.5"/>
+      <g fill="#FAF8F3" stroke="#292B28" stroke-width="3"><circle cx="218" cy="132" r="5"/><circle cx="218" cy="280" r="5"/><circle cx="416" cy="280" r="5"/></g>
+      <g stroke="#292B28" stroke-width="2" stroke-linecap="round" opacity=".55"><path d="M203 201h10m-10 7h10m98 86v10m7-10v10"/></g>
+    </g>
+    <g transform="rotate(28 469 229)" stroke="#292B28" stroke-linejoin="round">
+      <path d="M456 129h26v165l-13 29-13-29Z" fill="#F2AE87" stroke-width="3.5"/>
+      <path d="M456 129v-14a8 8 0 0 1 8-8h10a8 8 0 0 1 8 8v14" fill="#E7DFF4" stroke-width="3.5"/>
+      <path d="M456 129h26v13h-26Z" fill="#FAF8F3" stroke-width="2.5"/>
+      <path d="M465 146v142" stroke="#FAF8F3" stroke-width="3" opacity=".8"/>
+      <path d="m456 294 13 29 13-29-13 5Z" fill="#FAF8F3" stroke-width="2.5"/>
+      <path d="m464 313 5 10 5-10Z" fill="#292B28" stroke-width="2"/>
+    </g>
+    <path d="M94 132v18m-9-9h18" stroke="#4D6B47" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+    <circle cx="535" cy="91" r="6" stroke="#4D6B47" stroke-width="2" opacity=".45"/>
+  </g>
+</svg>

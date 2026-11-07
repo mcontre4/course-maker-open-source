@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "default": "mechanism",
+  "examples": [
+    {
+      "id": "mechanism",
+      "styles": [
+        "*"
+      ],
+      "source": "mechanism.js",
+      "image": "mechanism.png",
+      "notes": "mechanism.json",
+      "terms": [
+        "mechanism",
+        "light",
+        "shadow",
+        "force",
+        "flow",
+        "pressure",
+        "causes",
+        "mecanismo",
+        "sombra",
+        "pressao",
+        "flujo"
+      ]
+    },
+    {
+      "id": "comparison",
+      "styles": [
+        "*"
+      ],
+      "source": "comparison.js",
+      "image": "comparison.png",
+      "notes": "comparison.json",
+      "terms": [
+        "compare",
+        "comparison",
+        "versus",
+        "whereas",
+        "difference",
+        "comparar",
+        "comparacao",
+        "comparacion",
+        "diferenca"
+      ]
+    },
+    {
+      "id": "worked-example",
+      "styles": [
+        "*"
+      ],
+      "source": "worked-example.js",
+      "image": "worked-example.png",
+      "notes": "worked-example.json",
+      "terms": [
+        "solve",
+        "equation",
+        "calculate",
+        "multiply",
+        "divide",
+        "calculation",
+        "equacao",
+        "resolver",
+        "calcular",
+        "ecuacion"
+      ]
+    },
+    {
+      "id": "procedure",
+      "styles": [
+        "*"
+      ],
+      "source": "procedure.js",
+      "image": "procedure.png",
+      "notes": "procedure.json",
+      "terms": [
+        "procedure",
+        "workflow",
+        "click",
+        "select",
+        "save",
+        "folder",
+        "steps",
+        "procedimento",
+        "clique",
+        "pasta",
+        "pasos"
+      ]
+    },
+    {
+      "id": "network",
+      "styles": [
+        "*"
+      ],
+      "source": "network.js",
+      "image": "network.png",
+      "notes": "network.json",
+      "terms": [
+        "network",
+        "routes",
+        "trade",
+        "exchange",
+        "intermediaries",
+        "cities",
+        "connections",
+        "rede",
+        "rotas",
+        "comercio",
+        "intercambio",
+        "conexoes"
+      ]
+    },
+    {
+      "id": "institutional-change",
+      "styles": [
+        "*"
+      ],
+      "source": "institutional-change.js",
+      "image": "institutional-change.png",
+      "notes": "institutional-change.json",
+      "terms": [
+        "transition",
+        "gradual",
+        "civilian",
+        "military",
+        "congress",
+        "rights",
+        "censorship",
+        "regime",
+        "transicao",
+        "ditadura",
+        "direitos",
+        "censura",
+        "transicion"
+      ]
+    }
+  ]
+}

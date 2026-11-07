@@ -1,0 +1,39 @@
+repos:
+  - repo: local
+    hooks:
+      - id: backend-ruff
+        name: backend ruff
+        entry: poetry -C backend run ruff check src tests
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: backend-mypy
+        name: backend mypy
+        entry: poetry -C backend run mypy
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: backend-affected-tests
+        name: backend affected tests
+        entry: poetry -C backend run pytest --testmon
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: backend-unit-tests
+        name: backend unit tests (95% coverage)
+        entry: poetry -C backend run pytest tests/unit --cov=app.shared.application --cov=app.shared.domain --cov=app.users.application --cov=app.users.domain --cov=app.users.ports --cov=app.courses.application --cov=app.courses.domain --cov=app.courses.ports --cov=app.credits.application --cov=app.credits.domain --cov=app.credits.ports --cov-fail-under=95
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: backend-hexagonal-boundaries
+        name: backend hexagonal boundaries (role-based)
+        entry: python backend/scripts/check_hexagonal_boundaries.py --root backend/src
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: backend-tach
+        name: backend tach (import graph)
+        entry: poetry -C backend run tach check
+        language: system
+        pass_filenames: false
+        always_run: true

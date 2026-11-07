@@ -1,0 +1,53 @@
+name: Backend
+on:
+  push:
+    paths: ['backend/**', 'tools/animator/**', 'infra/**', 'compose.yaml', '.pre-commit-config.yaml', '.github/workflows/backend.yml']
+  pull_request:
+    paths: ['backend/**', 'tools/animator/**', 'infra/**', 'compose.yaml', '.pre-commit-config.yaml', '.github/workflows/backend.yml']
+jobs:
+  animator-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/animator/package-lock.json
+      - run: npm ci --prefix tools/animator
+      - run: node --test tools/animator/tests/validate-*.test.mjs tools/animator/tests/style-runtime.test.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install Pillow
+      - run: npx playwright-core install --with-deps chromium
+        working-directory: tools/animator
+      - run: |
+          export REMOTION_BROWSER_EXECUTABLE="$(node -p "require('./node_modules/playwright-core').chromium.executablePath()")"
+          node --test tests/render-canvas.test.mjs
+        working-directory: tools/animator
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/animator/package-lock.json
+      - run: npm ci --prefix tools/animator
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install poetry==2.2.1
+      - run: poetry -C backend install --extras ai --no-interaction
+      - run: python backend/scripts/check_hexagonal_boundaries.py --root backend/src
+      - run: poetry -C backend run tach check
+      - run: poetry -C backend run ruff check src tests
+      - run: poetry -C backend run mypy
+      - run: poetry -C backend run pytest tests/unit --cov=app.shared.application --cov=app.shared.domain --cov=app.users.application --cov=app.users.domain --cov=app.users.ports --cov=app.courses.application --cov=app.courses.domain --cov=app.courses.ports --cov=app.credits.application --cov=app.credits.domain --cov=app.credits.ports --cov-fail-under=95
+      - run: poetry -C backend run pytest tests/integration
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform -chdir=infra/terraform init -backend=false -input=false
+      - run: terraform -chdir=infra/terraform fmt -check
+      - run: terraform -chdir=infra/terraform validate

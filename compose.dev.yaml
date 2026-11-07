@@ -1,0 +1,41 @@
+# Local Docker-capable animator development. Use scripts/dev-main.sh.
+# The Docker socket grants host-level access; never use this override in production.
+services:
+  lesson-video-runtime:
+    build:
+      context: ./tools/animator
+      dockerfile: Dockerfile.playback
+    image: ${COURSE_MAKER_LESSON_VIDEO_IMAGE:-course-maker-renderer:canvas-v1}
+    entrypoint: ["node", "--version"]
+  animator-runtime:
+    build: ./tools/animator
+    image: ${COURSE_MAKER_ANIMATOR_IMAGE:-course-maker-animator:canvas-v1}
+    command: ["node", "--version"]
+  api:
+    build:
+      context: ./backend
+      target: animator-dev
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--reload-dir", "${COURSE_MAKER_REPO_ROOT:?Use scripts/dev-main.sh}/backend/src", "--reload-include", "*.md"]
+    environment:
+      WATCHFILES_FORCE_POLLING: "true"
+      COURSE_MAKER_LESSON_VIDEO_IMAGE: ${COURSE_MAKER_LESSON_VIDEO_IMAGE:-course-maker-renderer:canvas-v1}
+      PYTHONPATH: ${COURSE_MAKER_REPO_ROOT}/backend/src
+      COURSE_MAKER_ANIMATOR_TOOLS_DIRECTORY: ${COURSE_MAKER_REPO_ROOT}/tools/animator
+      COURSE_MAKER_ANIMATION_LOCAL_DIRECTORY: ${COURSE_MAKER_REPO_ROOT}/backend/.artifacts/animation
+      COURSE_MAKER_SPEECH_LOCAL_DIRECTORY: /app/.artifacts/speech
+      COURSE_MAKER_ANIMATOR_IMAGE: ${COURSE_MAKER_ANIMATOR_IMAGE:-course-maker-animator:canvas-v1}
+      COURSE_MAKER_ANIMATOR_TIMEOUT_SEC: ${COURSE_MAKER_ANIMATOR_TIMEOUT_SEC:-1800}
+      COURSE_MAKER_ANIMATOR_MAX_ATTEMPTS: ${COURSE_MAKER_ANIMATOR_MAX_ATTEMPTS:-2}
+    ports: !override ["127.0.0.1:50050:8000"]
+    group_add: ["${COURSE_MAKER_DOCKER_GID:-0}"]
+    depends_on:
+      animator-runtime: {condition: service_completed_successfully}
+      lesson-video-runtime: {condition: service_completed_successfully}
+    volumes:
+      # Identical absolute paths are required for sibling Docker bind mounts,
+      # including the billing proxy's __file__ and the generated job directory.
+      - ${COURSE_MAKER_REPO_ROOT}/backend/src:${COURSE_MAKER_REPO_ROOT}/backend/src:ro
+      - ${COURSE_MAKER_REPO_ROOT}/tools/animator:${COURSE_MAKER_REPO_ROOT}/tools/animator:ro
+      - ${COURSE_MAKER_REPO_ROOT}/backend/.artifacts/animation:${COURSE_MAKER_REPO_ROOT}/backend/.artifacts/animation
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped

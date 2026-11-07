@@ -1,0 +1,128 @@
+{
+  "course": {
+    "id": "course_b6393e27-84ca-4394-9e78-ad36e0661c60",
+    "title": "U.S. Constitution \u00b7 One-minute lesson",
+    "description": "Reusable live smoke test: a concise, nonpartisan introduction to the U.S. Constitution.",
+    "duration": {
+      "mode": "total",
+      "hours": 1,
+      "weeks": null,
+      "hours_per_week": null
+    },
+    "image": "",
+    "status": "ready",
+    "chapters": [
+      {
+        "id": "chapter_6f01a75b-f9d7-4e44-a281-1378d0247c6b",
+        "title": "Constitution essentials",
+        "summary": "A one-minute civics smoke test.",
+        "image": "",
+        "lessons": [
+          {
+            "id": "lesson_24d8490d-e459-443b-b5c9-a396ee93050f",
+            "title": "The U.S. Constitution in one minute",
+            "topics": [
+              "The Constitution as the supreme law",
+              "Three branches and checks and balances",
+              "Rights protected by amendments"
+            ],
+            "minutes": 1,
+            "image": "",
+            "video_url": null,
+            "quiz": []
+          }
+        ]
+      }
+    ],
+    "reviewed": [],
+    "completed": [],
+    "attempts": []
+  },
+  "curriculum": {
+    "title": "U.S. Constitution \u00b7 One-minute lesson",
+    "audience": "Civics beginners",
+    "assumptions": [
+      "No prior civics knowledge"
+    ],
+    "outcomes": [
+      "Explain that the Constitution creates the federal government and limits its powers."
+    ],
+    "chapters": [
+      {
+        "chapter_id": "chapter_6f01a75b-f9d7-4e44-a281-1378d0247c6b",
+        "title": "Constitution essentials",
+        "summary": "A one-minute civics smoke test.",
+        "lessons": [
+          {
+            "lesson_id": "lesson_24d8490d-e459-443b-b5c9-a396ee93050f",
+            "chapter_id": "chapter_6f01a75b-f9d7-4e44-a281-1378d0247c6b",
+            "title": "The U.S. Constitution in one minute",
+            "objectives": [
+              "Explain that the Constitution creates the federal government and limits its powers."
+            ],
+            "concepts": [
+              "The Constitution as the supreme law",
+              "Three branches and checks and balances",
+              "Rights protected by amendments"
+            ],
+            "video_minutes": 1,
+            "practice_minutes": 0,
+            "reading_minutes": 0,
+            "review_minutes": 0,
+            "week": 1,
+            "prerequisites": [],
+            "examples": [],
+            "level": "beginner",
+            "adjacent_context": "A standalone introduction for future civics lessons."
+          }
+        ]
+      }
+    ],
+    "guide": {
+      "teaching_level": "beginner",
+      "terminology": [
+        "Constitution",
+        "Congress",
+        "president",
+        "Supreme Court",
+        "amendment"
+      ],
+      "notation": [],
+      "style": "Plain, nonpartisan American English. STRICT: the combined narration_text across all scenes must total 120\u2013130 words, never exceed 130 words. Use exactly 3 short scenes. This is a 60-second video. No deep history.",
+      "assumptions": [
+        "No prior civics knowledge"
+      ],
+      "ordering_rules": [
+        "Purpose, three branches, then protected rights"
+      ],
+      "consistency_rules": [
+        "Distinguish the original Constitution from later amendments.",
+        "The Constitution was signed in 1787; the Bill of Rights was ratified in 1791."
+      ]
+    },
+    "required_topic_coverage": [
+      {
+        "topic": "The Constitution as the supreme law",
+        "lesson_ids": [
+          "lesson_24d8490d-e459-443b-b5c9-a396ee93050f"
+        ],
+        "trade_off": ""
+      },
+      {
+        "topic": "Three branches and checks and balances",
+        "lesson_ids": [
+          "lesson_24d8490d-e459-443b-b5c9-a396ee93050f"
+        ],
+        "trade_off": ""
+      },
+      {
+        "topic": "Rights protected by amendments",
+        "lesson_ids": [
+          "lesson_24d8490d-e459-443b-b5c9-a396ee93050f"
+        ],
+        "trade_off": ""
+      }
+    ],
+    "warnings": []
+  }
+}

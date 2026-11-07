@@ -1,0 +1,19 @@
+{
+  "id": "flat-vector-science",
+  "version": 1,
+  "name": "Flat-Vector Science",
+  "width": 1280,
+  "height": 720,
+  "fonts": [
+    "Nunito",
+    "Fredoka"
+  ],
+  "minimum_label_px": 28,
+  "minimum_headline_px": 44,
+  "drawing": "drawing.js",
+  "sound": "sound.js",
+  "examples": [
+    "examples/silk-road.js",
+    "examples/reference-ai.js"
+  ]
+}

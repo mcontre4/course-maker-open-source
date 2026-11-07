@@ -1,0 +1,5 @@
+/* Frame-driven React Flow: no browser-timed interpolation or animated dashes. */
+.react-flow *, .react-flow *::before, .react-flow *::after {
+  animation: none !important;
+  transition: none !important;
+}

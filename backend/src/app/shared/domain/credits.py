@@ -1,0 +1,2 @@
+class InsufficientCredits(Exception):
+    pass

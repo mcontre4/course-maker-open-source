@@ -1,0 +1,36 @@
+{
+  "id": "mechanism",
+  "title": "Trace a cause through its visible effect",
+  "origin": {
+    "style_id": null,
+    "note": "Executable choreography study; adapt artwork to the selected style."
+  },
+  "narration_and_visual_sequence": [
+    {
+      "at_sec": 3,
+      "narration": "Light passes the top of the object.",
+      "focus": "light ray",
+      "relationship": "Ray intersects the ground beyond the object.",
+      "action": "Trace the ray to its ground intersection.",
+      "hold": "Hold the complete path."
+    },
+    {
+      "at_sec": 9,
+      "narration": "Lowering the light lengthens the shadow.",
+      "focus": "ray endpoint",
+      "relationship": "The angle changes while object height remains constant.",
+      "action": "Lower the light and extend the same ray and shadow.",
+      "hold": "Keep the object fixed."
+    },
+    {
+      "at_sec": 15,
+      "narration": "The lower angle produces the longer shadow.",
+      "focus": "shadow length",
+      "relationship": "Compare the new endpoint with the fixed object.",
+      "action": "Settle and add a short result label.",
+      "hold": "Stop camera motion while reading."
+    }
+  ],
+  "improvement_target": "Use one dominant subject, develop the relationship visibly, retire old labels, then hold the result.",
+  "adaptation": "Borrow explanatory structure and object continuity. Selected STYLE.md governs artwork. Do not copy topic facts, timing or imperfections."
+}

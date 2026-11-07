@@ -1,0 +1,81 @@
+services:
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports: ["127.0.0.1:8025:8025", "127.0.0.1:1025:1025"]
+  mysql:
+    image: mysql:8.4
+    # Native reviewer conversations include rendered image evidence.
+    command: ["--max-allowed-packet=256M"]
+    environment:
+      MYSQL_DATABASE: course_maker
+      MYSQL_USER: course_maker
+      MYSQL_PASSWORD: local-password
+      MYSQL_ROOT_PASSWORD: local-root-password
+    ports: ["127.0.0.1:3306:3306"]
+    volumes: ["mysql-data:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      retries: 30
+  redis:
+    image: redis:7.4-alpine
+    ports: ["127.0.0.1:6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 10
+  migrate:
+    build: ./backend
+    environment:
+      COURSE_MAKER_DATABASE_URL: mysql+pymysql://course_maker:local-password@mysql:3306/course_maker?charset=utf8mb4
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      mysql: {condition: service_healthy}
+  api:
+    build: ./backend
+    environment:
+      COURSE_MAKER_DATABASE_URL: mysql+pymysql://course_maker:local-password@mysql:3306/course_maker?charset=utf8mb4
+      COURSE_MAKER_REDIS_URL: redis://redis:6379/0
+      COURSE_MAKER_API_KEY: ${COURSE_MAKER_API_KEY:?Set COURSE_MAKER_API_KEY to a private key with at least 32 characters}
+      COURSE_MAKER_INTERNAL_TOOLS_KEY: ${COURSE_MAKER_INTERNAL_TOOLS_KEY:-}
+      COURSE_MAKER_OPENROUTER_API_KEY: ${COURSE_MAKER_OPENROUTER_API_KEY:-}
+      COURSE_MAKER_THUMBNAIL_MODEL: ${COURSE_MAKER_THUMBNAIL_MODEL:-openai/gpt-6.1-sol}
+      COURSE_MAKER_TAVILY_API_KEY: ${COURSE_MAKER_TAVILY_API_KEY:-}
+      COURSE_MAKER_ELEVENLABS_API_KEY: ${COURSE_MAKER_ELEVENLABS_API_KEY:-}
+      COURSE_MAKER_ELEVENLABS_USD_PER_CREDIT: ${COURSE_MAKER_ELEVENLABS_USD_PER_CREDIT:-}
+      COURSE_MAKER_ELEVENLABS_VOICE_ID: ${COURSE_MAKER_ELEVENLABS_VOICE_ID:-6WwXjDDEMyNmFG95zycZ}
+      COURSE_MAKER_SPEECH_STORAGE_BACKEND: ${COURSE_MAKER_SPEECH_STORAGE_BACKEND:-local}
+      COURSE_MAKER_SPEECH_STABILITY: ${COURSE_MAKER_SPEECH_STABILITY:-0.5}
+      COURSE_MAKER_SPEECH_SIMILARITY: ${COURSE_MAKER_SPEECH_SIMILARITY:-0.75}
+      COURSE_MAKER_SPEECH_CLONE_STRENGTH: ${COURSE_MAKER_SPEECH_CLONE_STRENGTH:-0.0}
+      COURSE_MAKER_SPEECH_SILENCE_BETWEEN_SCENES_SEC: ${COURSE_MAKER_SPEECH_SILENCE_BETWEEN_SCENES_SEC:-0.0}
+      COURSE_MAKER_GCP_PROJECT: ${COURSE_MAKER_GCP_PROJECT:-}
+      COURSE_MAKER_GCS_BUCKET: ${COURSE_MAKER_GCS_BUCKET:-}
+      COURSE_MAKER_GCS_SIGNER_EMAIL: ${COURSE_MAKER_GCS_SIGNER_EMAIL:-}
+      COURSE_MAKER_CORS_ORIGINS: '${COURSE_MAKER_CORS_ORIGINS:-["http://localhost:5173"]}'
+      COURSE_MAKER_AUTH_ENABLED: ${COURSE_MAKER_AUTH_ENABLED:-false}
+      COURSE_MAKER_AUTH_PUBLIC_URL: ${COURSE_MAKER_AUTH_PUBLIC_URL:-http://localhost:5173}
+      COURSE_MAKER_AUTH_SESSION_SECONDS: ${COURSE_MAKER_AUTH_SESSION_SECONDS:-28800}
+      COURSE_MAKER_AUTH_IDLE_SECONDS: ${COURSE_MAKER_AUTH_IDLE_SECONDS:-1800}
+      COURSE_MAKER_STRIPE_SECRET_KEY: ${COURSE_MAKER_STRIPE_SECRET_KEY:-}
+      COURSE_MAKER_STRIPE_WEBHOOK_SECRET: ${COURSE_MAKER_STRIPE_WEBHOOK_SECRET:-}
+      COURSE_MAKER_CREDIT_CREATE_COST: ${COURSE_MAKER_CREDIT_CREATE_COST:-1}
+      COURSE_MAKER_CREDIT_GENERATE_COST: ${COURSE_MAKER_CREDIT_GENERATE_COST:-5}
+      COURSE_MAKER_CREDIT_MEDIA_COST: ${COURSE_MAKER_CREDIT_MEDIA_COST:-10}
+      COURSE_MAKER_CREDIT_AUTOMATIC_COST: ${COURSE_MAKER_CREDIT_AUTOMATIC_COST:-25}
+      COURSE_MAKER_GOOGLE_CLIENT_ID: ${COURSE_MAKER_GOOGLE_CLIENT_ID:-}
+      COURSE_MAKER_GOOGLE_CLIENT_SECRET: ${COURSE_MAKER_GOOGLE_CLIENT_SECRET:-}
+      COURSE_MAKER_SMTP_HOST: ${COURSE_MAKER_SMTP_HOST:-mailpit}
+      COURSE_MAKER_SMTP_PORT: ${COURSE_MAKER_SMTP_PORT:-1025}
+      COURSE_MAKER_SMTP_STARTTLS: ${COURSE_MAKER_SMTP_STARTTLS:-false}
+      COURSE_MAKER_SMTP_USERNAME: ${COURSE_MAKER_SMTP_USERNAME:-}
+      COURSE_MAKER_SMTP_PASSWORD: ${COURSE_MAKER_SMTP_PASSWORD:-}
+      COURSE_MAKER_MAIL_FROM: ${COURSE_MAKER_MAIL_FROM:-accounts@localhost}
+    ports: ["127.0.0.1:${COURSE_MAKER_API_PORT:-8000}:8000"]
+    volumes: ["speech-data:/app/.artifacts/speech"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+volumes:
+  mysql-data:
+  speech-data:

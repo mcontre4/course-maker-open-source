@@ -1,0 +1,6 @@
+from typing import Protocol
+
+
+class Storage(Protocol):
+    def upload_url(self, object_name: str, content_type: str, size: int) -> str: ...
+    def download_url(self, object_name: str) -> str: ...

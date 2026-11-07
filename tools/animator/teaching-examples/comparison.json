@@ -1,0 +1,36 @@
+{
+  "id": "comparison",
+  "title": "Expose a difference with a shared baseline",
+  "origin": {
+    "style_id": null,
+    "note": "Executable choreography study; adapt artwork to the selected style."
+  },
+  "narration_and_visual_sequence": [
+    {
+      "at_sec": 2,
+      "narration": "Start with the containers at the same scale.",
+      "focus": "containers",
+      "relationship": "Equal dimensions and a common baseline make comparison meaningful.",
+      "action": "Establish both containers and matching levels.",
+      "hold": "Keep both visible."
+    },
+    {
+      "at_sec": 7,
+      "narration": "Change only the second level.",
+      "focus": "second liquid level",
+      "relationship": "One variable changes while the reference stays fixed.",
+      "action": "Raise the right liquid; keep framing locked.",
+      "hold": "Settle both levels."
+    },
+    {
+      "at_sec": 13,
+      "narration": "Now the difference is visible.",
+      "focus": "gap between levels",
+      "relationship": "A bracket measures the difference directly.",
+      "action": "Add a bracket beside the changed level.",
+      "hold": "Hold both containers and bracket."
+    }
+  ],
+  "improvement_target": "Use one dominant subject, develop the relationship visibly, retire old labels, then hold the result.",
+  "adaptation": "Borrow explanatory structure and object continuity. Selected STYLE.md governs artwork. Do not copy topic facts, timing or imperfections."
+}

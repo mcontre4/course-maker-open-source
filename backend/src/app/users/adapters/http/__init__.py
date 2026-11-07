@@ -1,0 +1,1 @@
+"""Users incoming HTTP adapter."""

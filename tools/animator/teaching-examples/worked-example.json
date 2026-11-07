@@ -1,0 +1,36 @@
+{
+  "id": "worked-example",
+  "title": "Preserve quantities through algebra",
+  "origin": {
+    "style_id": null,
+    "note": "Executable choreography study; adapt artwork to the selected style."
+  },
+  "narration_and_visual_sequence": [
+    {
+      "at_sec": 2,
+      "narration": "Two equal unknown groups plus three make eleven.",
+      "focus": "two pouches and beads",
+      "relationship": "The objects represent both sides of the equation.",
+      "action": "Establish the balanced quantities and equation.",
+      "hold": "Keep symbols beside their represented groups."
+    },
+    {
+      "at_sec": 8,
+      "narration": "Remove three from both sides.",
+      "focus": "three beads on each side",
+      "relationship": "Subtracting equally preserves equality.",
+      "action": "Move the pink beads to the same lower tray on each side.",
+      "hold": "Show eight remaining beads."
+    },
+    {
+      "at_sec": 15,
+      "narration": "Each of the two groups contains four.",
+      "focus": "equal groups",
+      "relationship": "Divide the remaining eight into two groups.",
+      "action": "Open the pouches to reveal four beads each.",
+      "hold": "Hold x = 4 and the two equal groups."
+    }
+  ],
+  "improvement_target": "Use one dominant subject, develop the relationship visibly, retire old labels, then hold the result.",
+  "adaptation": "Borrow explanatory structure and object continuity. Selected STYLE.md governs artwork. Do not copy topic facts, timing or imperfections."
+}

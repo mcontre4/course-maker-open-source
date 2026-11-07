@@ -1,0 +1,108 @@
+.spend-details {
+  margin: 12px 0;
+  font-size: 0.8rem;
+  color: var(--cm-muted);
+  max-width: 680px;
+}
+.spend-details > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  width: fit-content;
+  padding: 6px 0;
+  list-style: none;
+}
+.spend-details > summary::-webkit-details-marker {
+  display: none;
+}
+.spend-details > summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  margin: 0 4px 4px;
+  border-right: 2px solid var(--cm-muted);
+  border-bottom: 2px solid var(--cm-muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.spend-details[open] > summary::after {
+  margin-bottom: -4px;
+  transform: rotate(-135deg);
+}
+.spend-details summary:focus-visible,
+.spend-refresh:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.spend-amount {
+  font-variant-numeric: tabular-nums;
+  color: var(--cm-ink);
+}
+.spend-body {
+  border-top: 1px solid var(--cm-line);
+  padding: 8px 0;
+}
+.spend-table-scroll {
+  overflow-x: auto;
+}
+.spend-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  text-align: left;
+}
+.spend-table th,
+.spend-table td {
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--cm-line);
+  vertical-align: top;
+}
+.spend-table th {
+  font-weight: 500;
+  color: var(--cm-ink);
+}
+.spend-table td:nth-last-child(-n + 2) {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.spend-table td:last-child,
+.spend-table thead th:last-child {
+  text-align: right;
+  padding-right: 0;
+}
+.spend-table td:nth-child(2) {
+  overflow-wrap: anywhere;
+  min-width: 100px;
+}
+.spend-table small {
+  display: block;
+  font-size: inherit;
+}
+.spend-refresh {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 0;
+  font: inherit;
+}
+.spend-refresh:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spend-details > summary::after {
+    transition: none;
+  }
+}
+
+.lesson-navigation .spend-details {
+  margin: 0;
+}
+.lesson-navigation .spend-group {
+  display: grid;
+  gap: 2px;
+}
